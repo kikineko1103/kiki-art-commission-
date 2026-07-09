@@ -24,10 +24,9 @@
             overflow-x: hidden;
             margin: 0;
             padding: 0;
-            zoom: 1.05; /* 網頁整體放大 105% */
+            zoom: 1.05;
         }
 
-        /* 新增：防止圖片被拖曳與反白 */
         img {
             -webkit-user-drag: none;
             user-select: none;
@@ -99,7 +98,6 @@
             opacity: 1;
         }
 
-        /* 標籤的菱形淡入動畫 */
         .nav-link.active::after {
             content: '◆';
             position: absolute;
@@ -125,6 +123,7 @@
             display: flex;
             flex-direction: column;
             height: 100%;
+            border: 1px solid rgba(142, 130, 121, 0.1);
         }
         .hover-card:hover {
             transform: translateY(-8px);
@@ -199,7 +198,7 @@
         .slider-slide {
             min-width: 100%;
             height: 100%;
-            object-fit: contain; /* 修改：改為 contain 讓圖片在區域內完整呈現不被裁切 */
+            object-fit: contain; 
             cursor: zoom-in;
         }
         .slider-btn {
@@ -241,15 +240,14 @@
             padding: 40px;
         }
         #lightbox img {
-            max-width: 800px; /* 將最大寬度限制在 800px 內 */
-            max-height: 70vh; /* 縮小最大高度至 70% 視窗高 */
+            max-width: 800px; 
+            max-height: 70vh; 
             border-radius: 12px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4); /* 加深陰影增加立體感 */
-            border: 4px solid var(--bg-very-light-brown); /* 增加拍立得風格的邊框 */
-            transition: opacity 0.3s ease-in-out; /* 新增：柔和切換動畫 */
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4); 
+            border: 4px solid var(--bg-very-light-brown); 
+            transition: opacity 0.3s ease-in-out; 
         }
 
-        /* 新增：燈箱的左右切換與關閉按鈕 */
         .lightbox-btn {
             position: absolute;
             top: 50%;
@@ -298,7 +296,6 @@
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
     </style>
 </head>
 <body>
@@ -314,20 +311,41 @@
     <div class="paw-bg" id="pawBg"></div>
 
     <!-- 導覽列 -->
-    <nav class="glass-nav fixed top-0 w-full z-[100] px-8 py-5 flex justify-between items-center">
-        <div class="text-xl font-bold tracking-widest text-[var(--taupe)] cursor-pointer flex items-center" onclick="showPage('home')">
-            <i class="fas fa-cat mr-3 text-[var(--taupe)]"></i> ききねこ / KIKI NEKO
+    <nav class="glass-nav fixed top-0 w-full z-[100] px-8 py-4 flex justify-between items-center">
+        <!-- 修改：將 LOGO 和更新日期包裝在一起 -->
+        <div class="cursor-pointer flex flex-col" onclick="showPage('home')">
+            <div class="text-xl font-bold tracking-widest text-[var(--taupe)] flex items-center">
+                <i class="fas fa-cat mr-3 text-[var(--taupe)]"></i> ききねこ / KIKI NEKO
+            </div>
+            <!-- 網站更新日期 (方便您在此直接修改) -->
+            <div class="text-[10px] text-[var(--taupe)] opacity-60 mt-0.5 ml-8 font-medium tracking-widest">
+                最後更新日期：2026/07/09
+            </div>
         </div>
+        
         <div class="hidden lg:flex space-x-8 text-xs tracking-[0.15em] font-medium">
             <span onclick="showPage('about')" class="nav-link px-1">關於我</span>
             <span onclick="showPage('rules')" class="nav-link px-1">委託須知</span>
             <span onclick="showPage('process')" class="nav-link px-1">繪圖流程</span>
             <span onclick="showPage('license')" class="nav-link px-1">授權範圍</span>
             <span onclick="showPage('items')" class="nav-link px-1">委託項目</span>
+            <span onclick="showPage('portfolio')" class="nav-link px-1">作品集</span>
             <span onclick="showPage('faq')" class="nav-link px-1">Q&A</span>
         </div>
-        <div class="lg:hidden text-[var(--taupe)] text-xl"><i class="fas fa-bars"></i></div>
+        <!-- 點擊開啟手機選單的功能 -->
+        <div class="lg:hidden text-[var(--taupe)] text-xl cursor-pointer" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></div>
     </nav>
+
+    <!-- 手機版導覽選單下拉層 -->
+    <div id="mobile-menu" class="hidden lg:hidden fixed top-[76px] left-0 w-full glass-nav flex-col items-center py-6 space-y-6 text-sm tracking-widest font-medium z-[90] shadow-md border-t border-[var(--taupe)]/10">
+        <span onclick="showPage('about')" class="nav-link px-1">關於我</span>
+        <span onclick="showPage('rules')" class="nav-link px-1">委託須知</span>
+        <span onclick="showPage('process')" class="nav-link px-1">繪圖流程</span>
+        <span onclick="showPage('license')" class="nav-link px-1">授權範圍</span>
+        <span onclick="showPage('items')" class="nav-link px-1">委託項目</span>
+        <span onclick="showPage('portfolio')" class="nav-link px-1">作品集</span>
+        <span onclick="showPage('faq')" class="nav-link px-1">Q&A</span>
+    </div>
 
     <!-- 主頁 (Home) -->
     <section id="home" class="page-view active text-center">
@@ -376,7 +394,6 @@
                     </p>
                     <p>
                         繪畫風格為日系風格，擅長繪畫男性角色居多。<br>
-                        
                     </p>
                     <p>
                         插畫繪製、角色設計、貼圖、封面設計、L2D模型拆建&製作等經驗。<br>
@@ -416,8 +433,8 @@
                     <div class="step-diamond group-hover:bg-[var(--accent-purple)] transition"><span>3</span></div>
                     <h4 class="font-bold text-xs md:text-sm">討論&報價</h4>
                 </div>
-		<div class="step-arrow"><i class="fas fa-chevron-right rounded-full"></i></div>
-			<div class="text-center flex-1 group">
+        <div class="step-arrow"><i class="fas fa-chevron-right rounded-full"></i></div>
+            <div class="text-center flex-1 group">
                     <div class="step-diamond group-hover:bg-[var(--accent-purple)] transition"><span>4</span></div>
                     <h4 class="font-bold text-xs md:text-sm">匯款</h4>
                 </div>
@@ -463,10 +480,9 @@
                     </h3>
                     <p class="text-sm text-gray-500 leading-loose">
                         報價後請在三天內匯款完成。<br>
-			付完訂金/全款完後才會開始繪製。<br>
+            付完訂金/全款完後才會開始繪製。<br>
                         匯款後請回傳匯款證明或截圖，用以確認匯款資訊。<br>
                         特殊情況無法在時間內匯款請先告知，三天內未匯款則取消委託。
-			
                     </p>
                 </div>
                 <div class="bg-white/60 p-8 rounded-3xl about-card-shadow">
@@ -548,10 +564,9 @@
                         不接未成年者委託﹑急件委託。<br>
                         為避免爭議，拒接 仿畫風﹑血腥獵奇﹑政治﹑夢向﹑官方嚴禁二創等。<br>
                         嚴禁將未完工之草稿擅自對外公開或發佈。<br>
-			嚴禁隨意修改圖像內容和加工行為以及禁止投餵為 AI 算圖。<br>
-			委託價格均為底價，實際費用依照需求和用途報價。<br>
-			繪師保有著作人格權和版權，作品可用於宣傳或範例展示。  <br>
-			
+            嚴禁隨意修改圖像內容和加工行為以及禁止投餵為 AI 算圖。<br>
+            委託價格均為底價，實際費用依照需求和用途報價。<br>
+            繪師保有著作人格權和版權，作品可用於宣傳或範例展示。  <br>
                     </p>
                 </div>
             </div>
@@ -563,10 +578,9 @@
         <div class="max-w-5xl w-full mx-auto">
             <h2 class="text-3xl mb-12 text-center font-bold"><i class="fas fa-paw cat-icon"></i> 授權範圍 <i class="fas fa-paw cat-icon"></i></h2>
 
-		<p class="text-[var(--taupe)] text-sm text-center mb-10 font-bold opacity-80">
-			目前委託皆為 "商用"，委託皆預設公開展示，非公開需額外收費，特定日期公開請先告知。變更使用範圍補差價即可。
-		<p>
-
+        <p class="text-[var(--taupe)] text-sm text-center mb-10 font-bold opacity-80">
+            目前委託皆為 "商用"，委託皆預設公開展示，非公開需額外收費，特定日期公開請先告知。變更使用範圍補差價即可。
+        <p>
 
             <div class="grid md:grid-cols-2 gap-8 text-center md:text-left">
                 <div class="bg-white/60 p-8 rounded-3xl about-card-shadow">
@@ -576,8 +590,8 @@
                     <p class="text-sm text-gray-500 leading-loose">
                         適用於實況收益、YouTube、Twitch、個人平台上宣傳等營利行為。<br>
                         可以少量印刷， "免費" 贈送與他人。<br>
-			設計類委託不適用此項目。<br>
-			版權歸創作者所有，請勿在圖片上做修改。
+            設計類委託不適用此項目。<br>
+            版權歸創作者所有，請勿在圖片上做修改。
                     </p>
                 </div>
                 <div class="bg-white/60 p-8 rounded-3xl about-card-shadow">
@@ -587,8 +601,8 @@
                     <p class="text-sm text-gray-500 leading-loose">
                         適用於實況收益、YouTube、Twitch、個人平台上宣傳等營利行為。<br>
                         適用於實體周邊製作並進行大量販售。<br>
-			設計類委託不適用此項目。<br>
-			版權歸創作者所有，請勿在圖片上做修改。
+            設計類委託不適用此項目。<br>
+            版權歸創作者所有，請勿在圖片上做修改。
                     </p>
                 </div>
                 <div class="bg-white/60 p-8 rounded-3xl about-card-shadow">
@@ -598,7 +612,7 @@
                     <p class="text-sm text-gray-500 leading-loose">
                         完全轉讓使用與展示權，可印製、修改圖本身。（保留著作人格權）<br>
                         禁止使用於會觸法、非法相關事物上。<br>
-			設計類委託一律為項目。
+            設計類委託一律為項目。
                     </p>
                 </div>
                 <div class="bg-white/60 p-8 rounded-3xl about-card-shadow">
@@ -607,7 +621,7 @@
                     </h3>
                     <p class="text-sm text-gray-500 leading-loose">
                         套用既定構圖與動作之委託項目。<br>
-			模板委託只回報一次草稿後完稿。<br>
+            模板委託只回報一次草稿後完稿。<br>
                         模板委託無買斷。<br>
                     </p>
                 </div>
@@ -626,7 +640,7 @@
 
     <!-- 委託項目 (Items) -->
     <section id="items" class="page-view">
-        <div class="max-w-6xl w-full mx-auto relative">
+        <div class="max-w-6xl w-full mx-auto relative px-4">
             <div class="flex flex-col md:flex-row items-center justify-center md:justify-between mb-12 gap-4">
                 <div class="w-10 h-10 hidden md:block"></div>
                 <h2 class="text-3xl font-bold text-center md:absolute md:left-1/2 md:-translate-x-1/2"><i class="fas fa-paw cat-icon"></i> 委託項目與報價 <i class="fas fa-paw cat-icon"></i></h2>
@@ -634,87 +648,71 @@
                     <i class="fas fa-file-alt mr-2"></i> 填寫委託表單
                 </a>
             </div>
-		<p class="text-[var(--taupe)] text-sm text-center mb-10 font-bold opacity-80">
-			至"Twitter"參考新圖,每個時期都有所落差,圖示僅供參考。<br>價格均為底價,會依照複雜度﹑人數及要求調整金額。
-		<p>
+            <p class="text-[var(--taupe)] text-sm text-center mb-10 font-bold opacity-80">
+                至"Twitter"參考新圖,每個時期都有所落差,圖示僅供參考。<br>價格均為底價,會依照複雜度﹑人數及要求調整金額。
+            </p>
 
-            <div class="flex flex-col gap-8 max-w-4xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 
-                <!-- 項目 1 -->
-                <div class="hover-card p-6 shadow-sm flex flex-col md:flex-row gap-6 items-center">
-                    <div class="w-full md:w-[60%]">
-                        <div class="slider-wrapper group mb-0">
+                <!-- 項目 1: 貼圖 -->
+                <div class="hover-card px-6 pb-6 pt-8 shadow-sm flex flex-col gap-4 relative">
+                    <span class="absolute top-0 left-1/2 -translate-x-1/2 text-[12px] bg-[var(--soft-purple)] px-6 py-1 rounded-b-xl text-[var(--taupe)] font-bold z-20 shadow-sm tracking-widest">模板</span>
+                    <div class="w-full">
+                        <div class="slider-wrapper group mb-0 rounded-lg overflow-hidden">
                             <div class="slider-track" id="track-sticker">
-				<img src="https://lh3.googleusercontent.com/d/1CX_6K3vLYOZD28wEUWsalToo7AY-deSQ" class="slider-slide" onclick="openLightbox(this.src)">
-				<img src="https://lh3.googleusercontent.com/d/1OPTmVFu0Y40QAUw3gQyg0VrUQUkjkMQU" class="slider-slide" onclick="openLightbox(this.src)">
-                                <img src="https://lh3.googleusercontent.com/d/1XX_AJN-llZvjaDvsRkseo-EUKOBPyycY" class="slider-slide" onclick="openLightbox(this.src)">
-                                <img src="https://lh3.googleusercontent.com/d/1TX7kN6_U44Zi4ejH1MNcGyChyXDnk2my"  class="slider-slide" onclick="openLightbox(this.src)">
-                                <img src="https://lh3.googleusercontent.com/d/1cxRHnqmr3IP2V3O_WCKs8b_DSpzPaSH1"  class="slider-slide" onclick="openLightbox(this.src)">
-                                <img src="https://lh3.googleusercontent.com/d/1NtEzbNwGvI9ktiQaxiFcUgV27hCvO0Zq"  class="slider-slide" onclick="openLightbox(this.src)">
-
+                                <img src="https://lh3.googleusercontent.com/d/1AX4-fT-x6RLtJjiSa3O5L2X1SFwAfM2i" class="slider-slide" onclick="openLightbox(this.src)">
                             </div>
                             <button class="slider-btn btn-prev" onclick="moveSlider('sticker', -1)"><i class="fas fa-chevron-left"></i></button>
                             <button class="slider-btn btn-next" onclick="moveSlider('sticker', 1)"><i class="fas fa-chevron-right"></i></button>
                         </div>
                     </div>
-                    <div class="w-full md:w-[40%] flex flex-col justify-center h-full relative">
-			
-			<span class="absolute top-0 right-0 text-[10px] bg-[var(--soft-purple)] px-2 py-1 rounded text-[var(--taupe)]">靜態</span>
-
+                    <div class="w-full flex flex-col flex-grow">
                         <div class="flex-grow">
-                            <h3 class="font-bold text-lg mb-2 ">貼圖</h3>
-                            <p class="text-gray-500 text-xs leading-relaxed mb-4">適用於Discord 或 Twitch。</p>
+                            <h3 class="font-bold text-xl mb-2 text-[var(--dark-text)]">貼圖</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-4">適用於Discord 或 Twitch。</p>
                         </div>
-                        <div class="pt-4 border-t border-gray-100 flex justify-between items-center">
-                            <div class="flex flex-col gap-1">
-       				 <span class="text-[var(--taupe)] font-bold">模版：NT$ 350</span>
-        			<span class="text-[var(--taupe)] font-bold">新版：NT$ 450</span>
-        			<span class="text-[var(--taupe)] font-bold">全圖：NT$ 600</span>
-    			</div>
-			</div>
+                        <div class="pt-4 border-t border-gray-200 mt-auto w-full">
+                            <div class="flex justify-between items-center mb-2 last:mb-0">
+                                <span class="text-gray-500 text-sm">基礎價格</span>
+                                <span class="text-[var(--taupe)] font-bold text-base">NT$ 350</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- 項目 2 -->
-                <div class="hover-card p-6 shadow-sm flex flex-col md:flex-row gap-6 items-center">
-                    <div class="w-full md:w-[60%]">
-                        <div class="slider-wrapper mb-0">
+                <!-- 項目 2: 瑟瑟吐舌 -->
+                <div class="hover-card px-6 pb-6 pt-8 shadow-sm flex flex-col gap-4 relative">
+                    <span class="absolute top-0 left-1/2 -translate-x-1/2 text-[12px] bg-[var(--soft-purple)] px-6 py-1 rounded-b-xl text-[var(--taupe)] font-bold z-20 shadow-sm tracking-widest">模板</span>
+                    <div class="w-full">
+                        <div class="slider-wrapper group mb-0 rounded-lg overflow-hidden">
                             <div class="slider-track" id="track-fluff">
-				<img src="https://lh3.googleusercontent.com/d/1sAyypAshF1GVOZi3rH_iw5emSLyJbkAv" class="slider-slide" onclick="openLightbox(this.src)">
-				<img src="https://lh3.googleusercontent.com/d/1KX037Wpc1ALlCBPHrWy-oMnB809Xb3OD" class="slider-slide" onclick="openLightbox(this.src)">
-				<img src="https://lh3.googleusercontent.com/d/1WBzWsQAZ763-5COblLivmr5g5ARiTJ78" class="slider-slide" onclick="openLightbox(this.src)">
-				<img src="https://lh3.googleusercontent.com/d/1d1-emMtIqUYYc1PPIrAujNHSVSWzadGL" class="slider-slide" onclick="openLightbox(this.src)">
-				<img src="https://lh3.googleusercontent.com/d/1RC0dHUFu1h0hrsy553fup_rFtU22MphW" class="slider-slide" onclick="openLightbox(this.src)">
-				<img src="https://lh3.googleusercontent.com/d/1DEX95FNDIyIpdSSLV_Ew5wTS3PJ7FKGO" class="slider-slide" onclick="openLightbox(this.src)">
-                                <img src="https://lh3.googleusercontent.com/d/1jKjuYn1wWDUyn6aMNEVbVvHOws16ySfM" class="slider-slide" onclick="openLightbox(this.src)">
-                                <img src="https://lh3.googleusercontent.com/d/135K-Kc8dvyvh_Z3e3ROhfvedFhOxVOxG" class="slider-slide" onclick="openLightbox(this.src)">
-                                <img src="https://lh3.googleusercontent.com/d/1CPQgmE2OPGCng7Cy54rsfO8LfG3mNQtp" class="slider-slide" onclick="openLightbox(this.src)">
+                                <img src="https://lh3.googleusercontent.com/d/1Wyozs_nZrwvEzuZoWXIDPWTYNQy4SVF7" class="slider-slide" onclick="openLightbox(this.src)">
+                                <img src="https://lh3.googleusercontent.com/d/1d8z96p7o485kJkLKpYWEmGVP-B-8Lf1i" class="slider-slide" onclick="openLightbox(this.src)">
+                                <img src="https://lh3.googleusercontent.com/d/16I7_3x6hL5yU117CgdqkMw4eysYjynXo" class="slider-slide" onclick="openLightbox(this.src)">
                             </div>
                             <button class="slider-btn btn-prev" onclick="moveSlider('fluff', -1)"><i class="fas fa-chevron-left"></i></button>
                             <button class="slider-btn btn-next" onclick="moveSlider('fluff', 1)"><i class="fas fa-chevron-right"></i></button>
                         </div>
                     </div>
-                    <div class="w-full md:w-[40%] flex flex-col justify-center h-full relative">
-
-                            <span class="absolute top-0 right-0 text-[10px] bg-[var(--soft-purple)] px-2 py-1 rounded text-[var(--taupe)]">原創</span>
-
+                    <div class="w-full flex flex-col flex-grow">
                         <div class="flex-grow">
-                            <h3 class="font-bold text-lg mb-2 pr-10">原創毛球</h3>
-                            <p class="text-gray-500 text-xs leading-relaxed mb-4">毛球是依據人物設定特徵繪製會對部分物件做簡化或刪減。<br>2.0球形；3.0長尾巴</p>
+                            <h3 class="font-bold text-xl mb-2 text-[var(--dark-text)]">瑟瑟吐舌</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-4">瑟瑟吐舌 表情不變 手部可換動作</p>
                         </div>
-                        <div class="pt-4 border-t border-gray-100 flex justify-between items-center">
-                            <div class="flex flex-col gap-1">
-                            <span class="text-[var(--taupe)] font-bold">2.0：NT$ 350</span>
-                            <span class="text-[var(--taupe)] font-bold">3.0：NT$ 350</span>
-    			</div>
+                        <div class="pt-4 border-t border-gray-200 mt-auto w-full">
+                            <div class="flex justify-between items-center mb-2 last:mb-0">
+                                <span class="text-gray-500 text-sm">基礎價格</span>
+                                <span class="text-[var(--taupe)] font-bold text-base">NT$ 450</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- 項目 3 -->
-                <div class="hover-card p-6 shadow-sm flex flex-col md:flex-row gap-6 items-center">
-                    <div class="w-full md:w-[60%]">
-                        <div class="slider-wrapper mb-0">
+                <!-- 項目 3: 飯友 -->
+                <div class="hover-card px-6 pb-6 pt-8 shadow-sm flex flex-col gap-4 relative">
+                    <span class="absolute top-0 left-1/2 -translate-x-1/2 text-[12px] bg-[var(--soft-purple)] px-6 py-1 rounded-b-xl text-[var(--taupe)] font-bold z-20 shadow-sm tracking-widest">靜態</span>
+                    <div class="w-full">
+                        <div class="slider-wrapper group mb-0 rounded-lg overflow-hidden">
                             <div class="slider-track" id="track-rice">
                                 <img src="https://lh3.googleusercontent.com/d/1tEzOWXKscGxFkfrHZtdYpOnCy-FATyoC" class="slider-slide" onclick="openLightbox(this.src)">
                                 <img src="https://lh3.googleusercontent.com/d/1Tvlud9z-EhBUWkxBdfMnaG9_Tii2tiI0" class="slider-slide" onclick="openLightbox(this.src)">
@@ -723,232 +721,216 @@
                             <button class="slider-btn btn-next" onclick="moveSlider('rice', 1)"><i class="fas fa-chevron-right"></i></button>
                         </div>
                     </div>
-                    <div class="w-full md:w-[40%] flex flex-col justify-center h-full relative">
-
-                            <span class="absolute top-0 right-0 text-[10px] bg-[var(--soft-purple)] px-2 py-1 rounded text-[var(--taupe)]">靜態</span>
-
+                    <div class="w-full flex flex-col flex-grow">
                         <div class="flex-grow">
-                            <h3 class="font-bold text-lg mb-2 pr-10">飯友</h3>
-                            <p class="text-gray-500 text-xs leading-relaxed mb-4">壓克力飯友專用插圖。<br>可協助提供廠商所需刀模圖層與出血位。</p>
+                            <h3 class="font-bold text-xl mb-2 text-[var(--dark-text)]">飯友</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-4">壓克力飯友專用插圖。</p>
                         </div>
-                        <div class="pt-4 border-t border-gray-100 flex justify-between items-center">
-                            <span class="text-[var(--taupe)] font-bold">NT$ 500</span>
+                        <div class="pt-4 border-t border-gray-200 mt-auto w-full">
+                            <div class="flex justify-between items-center mb-2 last:mb-0">
+                                <span class="text-gray-500 text-sm">基礎價格</span>
+                                <span class="text-[var(--taupe)] font-bold text-base">NT$ 500</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- 項目 4 -->
-                <div class="hover-card p-6 shadow-sm flex flex-col md:flex-row gap-6 items-center">
-                    <div class="w-full md:w-[60%]">
-                        <div class="slider-wrapper mb-0">
+                <!-- 項目 4: 直播跳跳 -->
+                <div class="hover-card px-6 pb-6 pt-8 shadow-sm flex flex-col gap-4 relative">
+                    <span class="absolute top-0 left-1/2 -translate-x-1/2 text-[12px] bg-[var(--soft-purple)] px-6 py-1 rounded-b-xl text-[var(--taupe)] font-bold z-20 shadow-sm tracking-widest">直播</span>
+                    <div class="w-full">
+                        <div class="slider-wrapper group mb-0 rounded-lg overflow-hidden">
                             <div class="slider-track" id="track-jump">
                                 <img src="https://lh3.googleusercontent.com/d/17Pougd40z_F7kI1y57p0fgIeiRuFeJJO" class="slider-slide" onclick="openLightbox(this.src)">
                                 <img src="https://lh3.googleusercontent.com/d/1qVVW-WDugHkfsYDkRDi5id11JwOUHdB9" class="slider-slide" onclick="openLightbox(this.src)">
-                                <img src="https://lh3.googleusercontent.com/d/1FOo5OjsexNPuFfNZGrS0uIhY9-fxpZXt" class="slider-slide" onclick="openLightbox(this.src)">
                                 <img src="https://lh3.googleusercontent.com/d/1n1N1x6CzrKJOJKVQalIhJ2AJ-ik6Hr7-" class="slider-slide" onclick="openLightbox(this.src)">
                             </div>
                             <button class="slider-btn btn-prev" onclick="moveSlider('jump', -1)"><i class="fas fa-chevron-left"></i></button>
                             <button class="slider-btn btn-next" onclick="moveSlider('jump', 1)"><i class="fas fa-chevron-right"></i></button>
                         </div>
                     </div>
-                    <div class="w-full md:w-[40%] flex flex-col justify-center h-full relative">
-
-                            <span class="absolute top-0 right-0 text-[10px] bg-[var(--soft-purple)] px-2 py-1 rounded text-[var(--taupe)]">直播</span>
-
+                    <div class="w-full flex flex-col flex-grow">
                         <div class="flex-grow">
-                            <h3 class="font-bold text-lg mb-2 pr-10">直播跳跳</h3>
-                            <p class="text-gray-500 text-xs leading-relaxed mb-4">Discord語音跳跳小人。</p>
+                            <h3 class="font-bold text-xl mb-2 text-[var(--dark-text)]">直播跳跳</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-4">Discord語音跳跳小人。</p>
                         </div>
-                        <div class="pt-4 border-t border-gray-100 flex justify-between items-center">
-			<div class="flex flex-col gap-1">
-                            <span class="text-[var(--taupe)] font-bold">NT$ 700</span>
-                            <span class="text-[var(--taupe)] font-bold">表情動作差分：NT$ 150</span>
-                        </div>
-                        </div>
+                        <div class="pt-4 border-t border-gray-200 mt-auto w-full">
+                            <div class="flex justify-between items-center mb-2 last:mb-0">
+                                <span class="text-gray-500 text-sm">基礎價格</span>
+                                <span class="text-[var(--taupe)] font-bold text-base">NT$ 700</span>
+                            </div>
+                         </div>
                     </div>
                 </div>
 
-                <!-- 項目 5 -->
-                <div class="hover-card p-6 shadow-sm flex flex-col md:flex-row gap-6 items-center">
-                    <div class="w-full md:w-[60%]">
-                        <div class="slider-wrapper mb-0">
+                <!-- 項目 5: Q版 -->
+                <div class="hover-card px-6 pb-6 pt-8 shadow-sm flex flex-col gap-4 relative">
+                    <span class="absolute top-0 left-1/2 -translate-x-1/2 text-[12px] bg-[var(--soft-purple)] px-6 py-1 rounded-b-xl text-[var(--taupe)] font-bold z-20 shadow-sm tracking-widest">靜態</span>
+                    <div class="w-full">
+                        <div class="slider-wrapper group mb-0 rounded-lg overflow-hidden">
                             <div class="slider-track" id="track-headshot">
-                                <img src="https://lh3.googleusercontent.com/d/1FM0pqaTMLRNqtE706Inz3hp1MxKiQt4Y" class="slider-slide" onclick="openLightbox(this.src)">
                                 <img src="https://lh3.googleusercontent.com/d/1eLsWftAyCjWY3d7fgHkMjmd66nagfAIY" class="slider-slide" onclick="openLightbox(this.src)">
                                 <img src="https://lh3.googleusercontent.com/d/1jrx2u_ExAZyIq74FkmMu0hRMex282Sa1" class="slider-slide" onclick="openLightbox(this.src)">
-                                <img src="https://lh3.googleusercontent.com/d/17ROdVQPwqHgxNgSUUVT4rHfhnmuAgS-3" class="slider-slide" onclick="openLightbox(this.src)">
                             </div>
                             <button class="slider-btn btn-prev" onclick="moveSlider('headshot', -1)"><i class="fas fa-chevron-left"></i></button>
                             <button class="slider-btn btn-next" onclick="moveSlider('headshot', 1)"><i class="fas fa-chevron-right"></i></button>
                         </div>
                     </div>
-                    <div class="w-full md:w-[40%] flex flex-col justify-center h-full relative">
-
-                            <span class="absolute top-0 right-0 text-[10px] bg-[var(--soft-purple)] px-2 py-1 rounded text-[var(--taupe)]">靜態</span>
-
+                    <div class="w-full flex flex-col flex-grow">
                         <div class="flex-grow">
-                            <h3 class="font-bold text-lg mb-2 pr-10">Q版</h3>
-                            <p class="text-gray-500 text-xs leading-relaxed mb-4">約3.5頭身比例。</p>
+                            <h3 class="font-bold text-xl mb-2 text-[var(--dark-text)]">Q版立繪</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-4">約3.5頭身比例。</p>
                         </div>
-                        <div class="pt-4 border-t border-gray-100 flex justify-between items-center">
-                            <div class="flex flex-col gap-1">
-                            <span class="text-[var(--taupe)] font-bold">NT$ 1000</span>
-                            <span class="text-[var(--taupe)] font-bold">驚喜包：NT$ 800</span>
-    			</div>
+                        <div class="pt-4 border-t border-gray-200 mt-auto w-full">
+                            <div class="flex justify-between items-center mb-2 last:mb-0">
+                                <span class="text-gray-500 text-sm">基礎價格</span>
+                                <span class="text-[var(--taupe)] font-bold text-base">NT$ 1000</span>
+                            </div>
+                            <div class="flex justify-between items-center mb-2 last:mb-0">
+                                <span class="text-gray-500 text-sm">驚喜包</span>
+                                <span class="text-[var(--taupe)] font-bold text-base">NT$ 800</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- 項目 6 -->
-                <div class="hover-card p-6 shadow-sm flex flex-col md:flex-row gap-6 items-center">
-                    <div class="w-full md:w-[60%]">
-                        <div class="slider-wrapper mb-0">
+                <!-- 項目 6: 人物頭像 -->
+                <div class="hover-card px-6 pb-6 pt-8 shadow-sm flex flex-col gap-4 relative">
+                    <span class="absolute top-0 left-1/2 -translate-x-1/2 text-[12px] bg-[var(--soft-purple)] px-6 py-1 rounded-b-xl text-[var(--taupe)] font-bold z-20 shadow-sm tracking-widest">靜態</span>
+                    <div class="w-full">
+                        <div class="slider-wrapper group mb-0 rounded-lg overflow-hidden">
                             <div class="slider-track" id="track-chibi">
-                                <img src="https://lh3.googleusercontent.com/d/1T9i6_6f0VNev99lvDZCsKy92u-hK9Qk4" class="slider-slide" onclick="openLightbox(this.src)">
                                 <img src="https://lh3.googleusercontent.com/d/1mYTgNeP53OrtLCsqFsmJPIPae6E6tD0L" class="slider-slide" onclick="openLightbox(this.src)">
                                 <img src="https://lh3.googleusercontent.com/d/1HchBm5cAMtKJUWtyW_el1cuqBGtxCwTQ" class="slider-slide" onclick="openLightbox(this.src)">
                                 <img src="https://lh3.googleusercontent.com/d/1kk0H2VlH1YuaIKYXYtxMQPUHINxzR-oP" class="slider-slide" onclick="openLightbox(this.src)">
-                                <img src="https://lh3.googleusercontent.com/d/1laUe6zX21TWQWim6Zc2F1deFNiedYF8q" class="slider-slide" onclick="openLightbox(this.src)">
-                                <img src="https://lh3.googleusercontent.com/d/1cvX4cAjpqozSCOl_lPAwUcrhDcvP-oh_" class="slider-slide" onclick="openLightbox(this.src)">
-                                <img src="https://lh3.googleusercontent.com/d/1a5yELpwcUuS72oFQMcIr7ffpEGS-F33U" class="slider-slide" onclick="openLightbox(this.src)">
-
                             </div>
                             <button class="slider-btn btn-prev" onclick="moveSlider('chibi', -1)"><i class="fas fa-chevron-left"></i></button>
                             <button class="slider-btn btn-next" onclick="moveSlider('chibi', 1)"><i class="fas fa-chevron-right"></i></button>
                         </div>
                     </div>
-                    <div class="w-full md:w-[40%] flex flex-col justify-center h-full relative">
-
-                            <span class="absolute top-0 right-0 text-[10px] bg-[var(--soft-purple)] px-2 py-1 rounded text-[var(--taupe)]">靜態</span>
-
+                    <div class="w-full flex flex-col flex-grow">
                         <div class="flex-grow">
-                            <h3 class="font-bold text-lg mb-2 pr-10">人物頭像</h3>
-                            <p class="text-gray-500 text-xs leading-relaxed mb-4">人物繪製範圍至胸部以上。</p>
+                            <h3 class="font-bold text-xl mb-2 text-[var(--dark-text)]">人物頭像</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-4">繪製範圍至胸部以上，簡易背景。</p>
                         </div>
-                        <div class="pt-4 border-t border-gray-100 flex justify-between items-center">
-                            <div class="flex flex-col gap-1">
-                            <span class="text-[var(--taupe)] font-bold">NT$ 1000</span>
-                            <span class="text-[var(--taupe)] font-bold">驚喜包：NT$ 800</span>
-    			</div>
+                        <div class="pt-4 border-t border-gray-200 mt-auto w-full">
+                            <div class="flex justify-between items-center mb-2 last:mb-0">
+                                <span class="text-gray-500 text-sm">基礎價格</span>
+                                <span class="text-[var(--taupe)] font-bold text-base">NT$ 1000</span>
+                            </div>
+                            <div class="flex justify-between items-center mb-2 last:mb-0">
+                                <span class="text-gray-500 text-sm">驚喜包</span>
+                                <span class="text-[var(--taupe)] font-bold text-base">NT$ 800</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- 項目 7 -->
-                <div class="hover-card p-6 shadow-sm flex flex-col md:flex-row gap-6 items-center">
-                    <div class="w-full md:w-[60%]">
-                        <div class="slider-wrapper mb-0">
+                <!-- 項目 7: 人物半身 -->
+                <div class="hover-card px-6 pb-6 pt-8 shadow-sm flex flex-col gap-4 relative">
+                    <span class="absolute top-0 left-1/2 -translate-x-1/2 text-[12px] bg-[var(--soft-purple)] px-6 py-1 rounded-b-xl text-[var(--taupe)] font-bold z-20 shadow-sm tracking-widest">靜態</span>
+                    <div class="w-full">
+                        <div class="slider-wrapper group mb-0 rounded-lg overflow-hidden">
                             <div class="slider-track" id="track-halfbody">
-                                <img src="https://lh3.googleusercontent.com/d/1M4n6kDxQt_xqoaB813WfQ9MQNekSUeyj" class="slider-slide" onclick="openLightbox(this.src)">
-                                <img src="https://lh3.googleusercontent.com/d/1g5SjKHQwL6_laqNcv6kfbBkZB8qACuza" class="slider-slide" onclick="openLightbox(this.src)">
-                                <img src="https://lh3.googleusercontent.com/d/1MuVDz3FzrBU9bgMGWGSQoGT6h9Y1a33Z" class="slider-slide" onclick="openLightbox(this.src)">
-                                <img src="https://lh3.googleusercontent.com/d/1rUsr5-SVsEy5ewv27vOaZ7NIzHQnI_zs" class="slider-slide" onclick="openLightbox(this.src)">
-                                <img src="https://lh3.googleusercontent.com/d/1co3TpLTJEtWle2CLn-3-wXWL3c7XgK7z" class="slider-slide" onclick="openLightbox(this.src)">
                                 <img src="https://lh3.googleusercontent.com/d/1X2F6owWnG72IDWZtu7chAGftCaR48XQw" class="slider-slide" onclick="openLightbox(this.src)">
-                                <img src="https://lh3.googleusercontent.com/d/1_kuKZ4tSVbJMZqEGIWUsAqf5sMd3mshP" class="slider-slide" onclick="openLightbox(this.src)">
-                                <img src="https://lh3.googleusercontent.com/d/1Q3LUU7V6ynXZx9Ln63aiw8pHkDv7atka" class="slider-slide" onclick="openLightbox(this.src)">
+                                <img src="https://lh3.googleusercontent.com/d/1MuVDz3FzrBU9bgMGWGSQoGT6h9Y1a33Z" class="slider-slide" onclick="openLightbox(this.src)">
+                                <img src="https://lh3.googleusercontent.com/d/1co3TpLTJEtWle2CLn-3-wXWL3c7XgK7z" class="slider-slide" onclick="openLightbox(this.src)">
                             </div>
                             <button class="slider-btn btn-prev" onclick="moveSlider('halfbody', -1)"><i class="fas fa-chevron-left"></i></button>
                             <button class="slider-btn btn-next" onclick="moveSlider('halfbody', 1)"><i class="fas fa-chevron-right"></i></button>
                         </div>
                     </div>
-                    <div class="w-full md:w-[40%] flex flex-col justify-center h-full relative">
-
-                            <span class="absolute top-0 right-0 text-[10px] bg-[var(--soft-purple)] px-2 py-1 rounded text-[var(--taupe)]">靜態</span>
-
+                    <div class="w-full flex flex-col flex-grow">
                         <div class="flex-grow">
-                            <h3 class="font-bold text-lg mb-2 pr-10">人物半身</h3>
-                            <p class="text-gray-500 text-xs leading-relaxed mb-4">人物繪製範圍至大腿以上。</p>
+                            <h3 class="font-bold text-xl mb-2 text-[var(--dark-text)]">人物半身</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-4">範圍至跨部以上，簡易背景。</p>
                         </div>
-                        <div class="pt-4 border-t border-gray-100 flex justify-between items-center">
-                            <div class="flex flex-col gap-1">
-                            <span class="text-[var(--taupe)] font-bold">NT$ 1700</span>
-                            <span class="text-[var(--taupe)] font-bold">驚喜包：NT$ 1300</span>
-                            <span class="text-[var(--taupe)] font-bold">簡易背景：NT$ 500</span>
-    			</div>
+                        <div class="pt-4 border-t border-gray-200 mt-auto w-full">
+                            <div class="flex justify-between items-center mb-2 last:mb-0">
+                                <span class="text-gray-500 text-sm">基礎價格</span>
+                                <span class="text-[var(--taupe)] font-bold text-base">NT$ 1500</span>
+                            </div>
+                            <div class="flex justify-between items-center mb-2 last:mb-0">
+                                <span class="text-gray-500 text-sm">驚喜包</span>
+                                <span class="text-[var(--taupe)] font-bold text-base">NT$ 1200</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- 項目 8 -->
-                <div class="hover-card p-6 shadow-sm flex flex-col md:flex-row gap-6 items-center">
-                    <div class="w-full md:w-[60%]">
-                        <div class="slider-wrapper mb-0">
+                <!-- 項目 8: 人物全身 -->
+                <div class="hover-card px-6 pb-6 pt-8 shadow-sm flex flex-col gap-4 relative">
+                    <span class="absolute top-0 left-1/2 -translate-x-1/2 text-[12px] bg-[var(--soft-purple)] px-6 py-1 rounded-b-xl text-[var(--taupe)] font-bold z-20 shadow-sm tracking-widest">靜態</span>
+                    <div class="w-full">
+                        <div class="slider-wrapper group mb-0 rounded-lg overflow-hidden">
                             <div class="slider-track" id="track-fullbody">
-                                <img src="https://lh3.googleusercontent.com/d/1M8umQ7JOt27gvMRdMfo43-HcYj98LwkA" class="slider-slide" onclick="openLightbox(this.src)">
-                                <img src="https://lh3.googleusercontent.com/d/12uK8HQCvABcrGbCdzWC73iJAWo5l0ulH" class="slider-slide" onclick="openLightbox(this.src)">
-                                <img src="https://lh3.googleusercontent.com/d/1MxUdlESDjjlQvth9wFw8AE_opJHiGhio" class="slider-slide" onclick="openLightbox(this.src)">
-                                <img src="https://lh3.googleusercontent.com/d/1XfJnVP4vVgaaIa2plYzRI0jHRyQFxUGF" class="slider-slide" onclick="openLightbox(this.src)">
-                                <img src="https://lh3.googleusercontent.com/d/1ydKtXWgvWTdPLNWIxqVUaWUOjE3E-B5T" class="slider-slide" onclick="openLightbox(this.src)">
-                                <img src="https://lh3.googleusercontent.com/d/1fBwgfKlWBsYZpltEb7oGdqu84v_8DPt7" class="slider-slide" onclick="openLightbox(this.src)">
                                 <img src="https://lh3.googleusercontent.com/d/1kTyNtPv1r64R3HQYonqBea-EIH29eSnR" class="slider-slide" onclick="openLightbox(this.src)">
-
+                                <img src="https://lh3.googleusercontent.com/d/1MxUdlESDjjlQvth9wFw8AE_opJHiGhio" class="slider-slide" onclick="openLightbox(this.src)">
+                                <img src="https://lh3.googleusercontent.com/d/1fBwgfKlWBsYZpltEb7oGdqu84v_8DPt7" class="slider-slide" onclick="openLightbox(this.src)">
                             </div>
                             <button class="slider-btn btn-prev" onclick="moveSlider('fullbody', -1)"><i class="fas fa-chevron-left"></i></button>
                             <button class="slider-btn btn-next" onclick="moveSlider('fullbody', 1)"><i class="fas fa-chevron-right"></i></button>
                         </div>
                     </div>
-                    <div class="w-full md:w-[40%] flex flex-col justify-center h-full relative">
-
-                            <span class="absolute top-0 right-0 text-[10px] bg-[var(--soft-purple)] px-2 py-1 rounded text-[var(--taupe)]">靜態</span>
-
+                    <div class="w-full flex flex-col flex-grow">
                         <div class="flex-grow">
-                            <h3 class="font-bold text-lg mb-2 pr-10">人物全身</h3>
-                            <p class="text-gray-500 text-xs leading-relaxed mb-4 pr-10">全身插畫。角色立繪或場景意境圖。</p>
+                            <h3 class="font-bold text-xl mb-2 text-[var(--dark-text)]">人物全身</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-4">全身插畫包含場景。</p>
                         </div>
-                        <div class="pt-4 border-t border-gray-100 flex justify-between items-center">
-                            <div class="flex flex-col gap-1">
-                            <span class="text-[var(--taupe)] font-bold">NT$ 2500</span>
-                            <span class="text-[var(--taupe)] font-bold">驚喜包：NT$ 2000</span>
-                            <span class="text-[var(--taupe)] font-bold">簡易背景：NT$ 500</span>
-                            <span class="text-[var(--taupe)] font-bold">場景背景：NT$ 1500</span>
-    			</div>
-
+                        <div class="pt-4 border-t border-gray-200 mt-auto w-full">
+                            <div class="flex justify-between items-center mb-2 last:mb-0">
+                                <span class="text-gray-500 text-sm">基礎價格</span>
+                                <span class="text-[var(--taupe)] font-bold text-base">NT$ 2500</span>
+                            </div>
+                            <div class="flex justify-between items-center mb-2 last:mb-0">
+                                <span class="text-gray-500 text-sm">驚喜包</span>
+                                <span class="text-[var(--taupe)] font-bold text-base">NT$ 2000</span>	
+                            </div>
+                  
                         </div>
                     </div>
                 </div>
 
-                <!-- 項目 9 -->
-                <div class="hover-card p-6 shadow-sm flex flex-col md:flex-row gap-6 items-center">
-                    <div class="w-full md:w-[60%]">
-                        <div class="slider-wrapper mb-0">
+                <!-- 項目 9: 三視圖 -->
+                <div class="hover-card px-6 pb-6 pt-8 shadow-sm flex flex-col gap-4 relative">
+                    <span class="absolute top-0 left-1/2 -translate-x-1/2 text-[12px] bg-[var(--soft-purple)] px-6 py-1 rounded-b-xl text-[var(--taupe)] font-bold z-20 shadow-sm tracking-widest">靜態</span>
+                    <div class="w-full">
+                        <div class="slider-wrapper group mb-0 rounded-lg overflow-hidden">
                             <div class="slider-track" id="track-Three views">
                                 <img src="https://lh3.googleusercontent.com/d/1pEbYaAkmn-gLV6tvIEBBCf8p-JIJUqIF" class="slider-slide" onclick="openLightbox(this.src)">
                                 <img src="https://lh3.googleusercontent.com/d/1J-l-mQIXfR-bGlqlI29CwO4V3ndRWeHo" class="slider-slide" onclick="openLightbox(this.src)">
-                                <img src="https://lh3.googleusercontent.com/d/1SDvnjZNO1vYe9pSMgJLzGcaUZH81jz58" class="slider-slide" onclick="openLightbox(this.src)">
-                                <img src="https://lh3.googleusercontent.com/d/1sYi8HndaiFfRPCXARzFkB3j0ELWFwIwt" class="slider-slide" onclick="openLightbox(this.src)">
                             </div>
                             <button class="slider-btn btn-prev" onclick="moveSlider('Three views', -1)"><i class="fas fa-chevron-left"></i></button>
                             <button class="slider-btn btn-next" onclick="moveSlider('Three views', 1)"><i class="fas fa-chevron-right"></i></button>
                         </div>
                     </div>
-                    <div class="w-full md:w-[40%] flex flex-col justify-center h-full relative">
-
-                            <span class="absolute top-0 right-0 text-[10px] bg-[var(--soft-purple)] px-2 py-1 rounded text-[var(--taupe)]">靜態</span>
-
+                    <div class="w-full flex flex-col flex-grow">
                         <div class="flex-grow">
-                            <h3 class="font-bold text-lg mb-2 pr-10">三視圖</h3>
-                            <p class="text-gray-500 text-xs leading-relaxed mb-4 pr-10">人物三視圖繪製。不包含人物設計。</p>
+                            <h3 class="font-bold text-xl mb-2 text-[var(--dark-text)]">三視圖</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-4">人物三視圖繪製。不包含人物設計。</p>
                         </div>
-                        <div class="pt-4 border-t border-gray-100 flex justify-between items-center">
-                            <div class="flex flex-col gap-1">
-                            <span class="text-[var(--taupe)] font-bold">NT$ 4000</span>
-                            <span class="text-[var(--taupe)] font-bold">差分：視需求報價</span>
-    			</div>
-
+                        <div class="pt-4 border-t border-gray-200 mt-auto w-full">
+                            <div class="flex justify-between items-center mb-2 last:mb-0">
+                                <span class="text-gray-500 text-sm">基礎價格</span>
+                                <span class="text-[var(--taupe)] font-bold text-base">NT$ 4000</span>
+                            </div>
+                            <div class="flex justify-between items-center mb-2 last:mb-0">
+                                <span class="text-gray-500 text-sm">差分</span>
+                                <span class="text-[var(--taupe)] font-bold text-base">視需求報價</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-
-                <!-- 項目 10: R-18 插畫 (含模糊按鈕) -->
-                <div class="hover-card p-6 shadow-sm border-2 border-[var(--soft-purple)]/30 flex flex-col md:flex-row gap-6 items-center">
-                    <div class="w-full md:w-[60%]">
-                        <div class="slider-wrapper mb-0 relative">
+                <!-- 項目 10: R-18 插畫 -->
+                <div class="hover-card px-6 pb-6 pt-8 shadow-sm flex flex-col gap-4 relative">
+                    <span class="absolute top-0 left-1/2 -translate-x-1/2 text-[12px] bg-red-50 border border-t-0 border-red-300 px-6 py-1 rounded-b-xl text-red-500 font-bold z-20 shadow-sm tracking-widest">NSFW</span>
+                    <div class="w-full">
+                        <div class="slider-wrapper group mb-0 rounded-lg overflow-hidden relative">
                             <div id="r18-overlay" class="absolute inset-0 bg-white/70 backdrop-blur-md z-20 flex flex-col items-center justify-center text-center p-4 transition-opacity duration-300">
                                 <i class="fas fa-exclamation-triangle text-red-400 text-3xl mb-2"></i>
-                                <p class="text-xs font-bold text-gray-700 mb-3 leading-relaxed">前方有瑟瑟內容<br>請確認您已滿 18 歲</p>
-                                <button onclick="confirmR18()" class="bg-red-400 text-white px-4 py-1.5 rounded-full text-xs font-bold hover:bg-red-500 transition-colors shadow-sm cursor-pointer">我已滿 18 歲</button>
+                                <p class="text-sm font-bold text-gray-700 mb-3 leading-relaxed">前方有瑟瑟內容<br>請確認您已滿 18 歲</p>
+                                <button onclick="confirmR18()" class="bg-red-400 text-white px-4 py-1.5 rounded-full text-sm font-bold hover:bg-red-500 transition-colors shadow-sm cursor-pointer">我已滿 18 歲</button>
                             </div>
                             <div class="slider-track" id="track-r18">
                                 <img src="https://lh3.googleusercontent.com/d/1b_Mof4rg0eVGeSJ8wRSiApNC1XzPxT2H" class="slider-slide" onclick="openLightbox(this.src)">
@@ -966,21 +948,20 @@
                             <button class="slider-btn btn-next" onclick="moveSlider('r18', 1)"><i class="fas fa-chevron-right"></i></button>
                         </div>
                     </div>
-                    <div class="w-full md:w-[40%] flex flex-col justify-center h-full relative">
-
-			<span class="absolute top-0 right-0 text-[10px] bg-red-50 px-2 py-1 rounded text-red-400">NSFW</span>
-
+                    <div class="w-full flex flex-col flex-grow">
                         <div class="flex-grow">
-                            <h3 class="font-bold text-lg mb-2 pr-10 flex items-center">R-18 插畫 <span class="ml-2 text-[10px] text-red-400 border border-red-200 px-1 rounded">18+</span></h3>
-                            <p class="text-gray-500 text-xs leading-relaxed mb-4">成人向情色插畫。包含衣服和表情差分。</p>
+                            <h3 class="font-bold text-xl mb-2 flex items-center text-[var(--dark-text)]">R-18 插畫 <span class="ml-2 text-[10px] text-red-500 border border-red-300 bg-red-50 px-1.5 py-0.5 rounded">18+</span></h3>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-4">成人向情色插畫。包含場景、衣服和表情差分。</p>
                         </div>
-                        <div class="pt-4 border-t border-gray-100 flex justify-between items-center">
-                            <div class="flex flex-col gap-1">
-                            <span class="text-[var(--taupe)] font-bold">NT$ 3700</span>
-                            <span class="text-[var(--taupe)] font-bold">驚喜包：NT$ 3000</span>
-                            <span class="text-[var(--taupe)] font-bold">簡易背景：NT$ 500</span>
-                            <span class="text-[var(--taupe)] font-bold">場景背景：NT$ 1500</span>
-    			</div>                            
+                        <div class="pt-4 border-t border-gray-200 mt-auto w-full">
+                            <div class="flex justify-between items-center mb-2 last:mb-0">
+                                <span class="text-gray-500 text-sm">基礎價格</span>
+                                <span class="text-[var(--taupe)] font-bold text-base">NT$ 3500</span>
+                            </div>
+                            <div class="flex justify-between items-center mb-2 last:mb-0">
+                                <span class="text-gray-500 text-sm">驚喜包</span>
+                                <span class="text-[var(--taupe)] font-bold text-base">NT$ 3000</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -989,9 +970,119 @@
         </div>
     </section>
 
+    <!-- 作品集展示 (Portfolio) -->
+    <section id="portfolio" class="page-view">
+        <div class="max-w-6xl w-full mx-auto px-4">
+            <h2 class="text-3xl mb-8 text-center font-bold"><i class="fas fa-paw cat-icon"></i> 作品集展示 <i class="fas fa-paw cat-icon"></i></h2>
+            
+            <!-- 分頁按鈕 -->
+            <div class="flex justify-center space-x-4 mb-12">
+                <button onclick="showPortfolioTab('images')" id="tab-images" class="portfolio-tab bg-[var(--taupe)] text-white border border-[var(--taupe)] px-8 py-2 rounded-full text-sm font-bold transition-all shadow-sm">
+                    插畫展示
+                </button>
+                <button onclick="showPortfolioTab('videos')" id="tab-videos" class="portfolio-tab bg-white/80 text-[var(--taupe)] border border-[var(--taupe)] px-8 py-2 rounded-full text-sm font-bold hover:bg-[var(--taupe)] hover:text-white transition-all shadow-sm">
+                    Live2D / 影片
+                </button>
+            </div>
+
+            <!-- 插畫分頁內容 -->
+            <div id="portfolio-images" class="portfolio-content columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+                <div class="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6">
+                    <img src="https://lh3.googleusercontent.com/d/1M8umQ7JOt27gvMRdMfo43-HcYj98LwkA" alt="作品展示" class="w-full h-auto object-cover cursor-zoom-in hover:scale-105 transition-transform duration-500 bg-gray-200" onclick="openLightbox(this.src, 'portfolio')">
+                </div>
+                <div class="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6">
+                    <img src="https://lh3.googleusercontent.com/d/1sYi8HndaiFfRPCXARzFkB3j0ELWFwIwt" alt="作品展示" class="w-full h-auto object-cover cursor-zoom-in hover:scale-105 transition-transform duration-500 bg-gray-200" onclick="openLightbox(this.src, 'portfolio')">
+                </div>
+                <div class="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6">
+                    <img src="https://lh3.googleusercontent.com/d/1SDvnjZNO1vYe9pSMgJLzGcaUZH81jz58" alt="作品展示" class="w-full h-auto object-cover cursor-zoom-in hover:scale-105 transition-transform duration-500 bg-gray-200" onclick="openLightbox(this.src, 'portfolio')">
+                </div>
+                <div class="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6">
+                    <img src="https://lh3.googleusercontent.com/d/1FM0pqaTMLRNqtE706Inz3hp1MxKiQt4Y" alt="作品展示" class="w-full h-auto object-cover cursor-zoom-in hover:scale-105 transition-transform duration-500 bg-gray-200" onclick="openLightbox(this.src, 'portfolio')">
+                </div>
+                <div class="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6">
+                    <img src="https://lh3.googleusercontent.com/d/1M4n6kDxQt_xqoaB813WfQ9MQNekSUeyj" alt="作品展示" class="w-full h-auto object-cover cursor-zoom-in hover:scale-105 transition-transform duration-500 bg-gray-200" onclick="openLightbox(this.src, 'portfolio')">
+                </div>
+                <div class="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6">
+                    <img src="https://lh3.googleusercontent.com/d/1T9i6_6f0VNev99lvDZCsKy92u-hK9Qk4" alt="作品展示" class="w-full h-auto object-cover cursor-zoom-in hover:scale-105 transition-transform duration-500 bg-gray-200" onclick="openLightbox(this.src, 'portfolio')">
+                </div>
+                <div class="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6">
+                    <img src="https://lh3.googleusercontent.com/d/1OPTmVFu0Y40QAUw3gQyg0VrUQUkjkMQU" alt="作品展示" class="w-full h-auto object-cover cursor-zoom-in hover:scale-105 transition-transform duration-500 bg-gray-200" onclick="openLightbox(this.src, 'portfolio')">
+                </div>
+                <div class="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6">
+                    <img src="https://lh3.googleusercontent.com/d/1XX_AJN-llZvjaDvsRkseo-EUKOBPyycY" alt="作品展示" class="w-full h-auto object-cover cursor-zoom-in hover:scale-105 transition-transform duration-500 bg-gray-200" onclick="openLightbox(this.src, 'portfolio')">
+                </div>
+                <div class="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6">
+                    <img src="https://lh3.googleusercontent.com/d/1TX7kN6_U44Zi4ejH1MNcGyChyXDnk2my" alt="作品展示" class="w-full h-auto object-cover cursor-zoom-in hover:scale-105 transition-transform duration-500 bg-gray-200" onclick="openLightbox(this.src, 'portfolio')">
+                </div>
+                <div class="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6">
+                    <img src="https://lh3.googleusercontent.com/d/1cxRHnqmr3IP2V3O_WCKs8b_DSpzPaSH1" alt="作品展示" class="w-full h-auto object-cover cursor-zoom-in hover:scale-105 transition-transform duration-500 bg-gray-200" onclick="openLightbox(this.src, 'portfolio')">
+                </div>
+                <div class="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6">
+                    <img src="https://lh3.googleusercontent.com/d/1NtEzbNwGvI9ktiQaxiFcUgV27hCvO0Zq" alt="作品展示" class="w-full h-auto object-cover cursor-zoom-in hover:scale-105 transition-transform duration-500 bg-gray-200" onclick="openLightbox(this.src, 'portfolio')">
+                </div>
+                <div class="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6">
+                    <img src="https://lh3.googleusercontent.com/d/1FOo5OjsexNPuFfNZGrS0uIhY9-fxpZXt" alt="作品展示" class="w-full h-auto object-cover cursor-zoom-in hover:scale-105 transition-transform duration-500 bg-gray-200" onclick="openLightbox(this.src, 'portfolio')">
+                </div>
+                <div class="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6">
+                    <img src="https://lh3.googleusercontent.com/d/17ROdVQPwqHgxNgSUUVT4rHfhnmuAgS-3" alt="作品展示" class="w-full h-auto object-cover cursor-zoom-in hover:scale-105 transition-transform duration-500 bg-gray-200" onclick="openLightbox(this.src, 'portfolio')">
+                </div>
+                <div class="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6">
+                    <img src="https://lh3.googleusercontent.com/d/1laUe6zX21TWQWim6Zc2F1deFNiedYF8q" alt="作品展示" class="w-full h-auto object-cover cursor-zoom-in hover:scale-105 transition-transform duration-500 bg-gray-200" onclick="openLightbox(this.src, 'portfolio')">
+                </div>
+                <div class="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6">
+                    <img src="https://lh3.googleusercontent.com/d/1cvX4cAjpqozSCOl_lPAwUcrhDcvP-oh_" alt="作品展示" class="w-full h-auto object-cover cursor-zoom-in hover:scale-105 transition-transform duration-500 bg-gray-200" onclick="openLightbox(this.src, 'portfolio')">
+                </div>
+                <div class="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6">
+                    <img src="https://lh3.googleusercontent.com/d/1a5yELpwcUuS72oFQMcIr7ffpEGS-F33U" alt="作品展示" class="w-full h-auto object-cover cursor-zoom-in hover:scale-105 transition-transform duration-500 bg-gray-200" onclick="openLightbox(this.src, 'portfolio')">
+                </div>
+                <div class="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6">
+                    <img src="https://lh3.googleusercontent.com/d/1g5SjKHQwL6_laqNcv6kfbBkZB8qACuza" alt="作品展示" class="w-full h-auto object-cover cursor-zoom-in hover:scale-105 transition-transform duration-500 bg-gray-200" onclick="openLightbox(this.src, 'portfolio')">
+                </div>
+                <div class="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6">
+                    <img src="https://lh3.googleusercontent.com/d/1rUsr5-SVsEy5ewv27vOaZ7NIzHQnI_zs" alt="作品展示" class="w-full h-auto object-cover cursor-zoom-in hover:scale-105 transition-transform duration-500 bg-gray-200" onclick="openLightbox(this.src, 'portfolio')">
+                </div>
+                <div class="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6">
+                    <img src="https://lh3.googleusercontent.com/d/1_kuKZ4tSVbJMZqEGIWUsAqf5sMd3mshP" alt="作品展示" class="w-full h-auto object-cover cursor-zoom-in hover:scale-105 transition-transform duration-500 bg-gray-200" onclick="openLightbox(this.src, 'portfolio')">
+                </div>
+                <div class="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6">
+                    <img src="https://lh3.googleusercontent.com/d/1Q3LUU7V6ynXZx9Ln63aiw8pHkDv7atka" alt="作品展示" class="w-full h-auto object-cover cursor-zoom-in hover:scale-105 transition-transform duration-500 bg-gray-200" onclick="openLightbox(this.src, 'portfolio')">
+                </div>
+                <div class="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6">
+                    <img src="https://lh3.googleusercontent.com/d/1XfJnVP4vVgaaIa2plYzRI0jHRyQFxUGF" alt="作品展示" class="w-full h-auto object-cover cursor-zoom-in hover:scale-105 transition-transform duration-500 bg-gray-200" onclick="openLightbox(this.src, 'portfolio')">
+                </div>
+                <div class="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6">
+                    <img src="https://lh3.googleusercontent.com/d/1ydKtXWgvWTdPLNWIxqVUaWUOjE3E-B5T" alt="作品展示" class="w-full h-auto object-cover cursor-zoom-in hover:scale-105 transition-transform duration-500 bg-gray-200" onclick="openLightbox(this.src, 'portfolio')">
+                </div>
+                <div class="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6">
+                    <img src="https://lh3.googleusercontent.com/d/12uK8HQCvABcrGbCdzWC73iJAWo5l0ulH" alt="作品展示" class="w-full h-auto object-cover cursor-zoom-in hover:scale-105 transition-transform duration-500 bg-gray-200" onclick="openLightbox(this.src, 'portfolio')">
+                </div>
+            </div>
+	
+            <!-- 影片分頁內容 -->
+            <div id="portfolio-videos" class="portfolio-content hidden columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+                <div class="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white relative group">
+                    <video class="w-full h-72 object-cover pointer-events-none bg-gray-200" autoplay loop muted playsinline>
+                        <source src="預設影片連結1.mp4" type="video/mp4">
+                    </video>
+                    <div class="absolute top-3 right-3 bg-black/50 text-white rounded-full p-2 w-8 h-8 flex items-center justify-center backdrop-blur-sm shadow-md">
+                        <i class="fas fa-video text-xs"></i>
+                    </div>
+                </div>
+                <div class="break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white relative group">
+                    <video class="w-full h-80 object-cover pointer-events-none bg-gray-200" autoplay loop muted playsinline>
+                        <source src="預設影片連結2.mp4" type="video/mp4">
+                    </video>
+                    <div class="absolute top-3 right-3 bg-black/50 text-white rounded-full p-2 w-8 h-8 flex items-center justify-center backdrop-blur-sm shadow-md">
+                        <i class="fas fa-video text-xs"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Q&A (FAQ) -->
     <section id="faq" class="page-view">
-        <div class="max-w-4xl w-full mx-auto">
+        <div class="max-w-4xl w-full mx-auto px-4">
             <h2 class="text-3xl mb-12 text-center font-bold"><i class="fas fa-paw cat-icon"></i> 委託常見問題 <i class="fas fa-paw cat-icon"></i></h2>
             <div class="space-y-6">
                 <!-- Q1 -->
@@ -1057,11 +1148,12 @@
     </section>
 
     <script>
-        function showPage(pageId) {
+        function showPage(pageId, pushToHistory = true) {
             const pages = document.querySelectorAll('.page-view');
             pages.forEach(page => page.classList.remove('active'));
             const targetPage = document.getElementById(pageId);
             if (targetPage) targetPage.classList.add('active');
+            
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => {
                 link.classList.remove('active');
@@ -1069,7 +1161,54 @@
                     link.classList.add('active');
                 }
             });
+
+            // 寫入 hash，保持頁面刷新狀態與記錄歷史
+            if (pushToHistory) {
+                if(history.pushState) {
+                    history.pushState(null, null, '#' + pageId);
+                } else {
+                    window.location.hash = pageId;
+                }
+            }
+
+            // 儲存當前頁面至 sessionStorage，確保重新整理後保持在原頁面
+            sessionStorage.setItem('currentPage', pageId);
+
+            // 切換頁面時自動關閉手機版選單
+            const menu = document.getElementById('mobile-menu');
+            if (menu && !menu.classList.contains('hidden')) {
+                menu.classList.add('hidden');
+                menu.classList.remove('flex');
+            }
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if(menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                menu.classList.add('flex');
+            } else {
+                menu.classList.add('hidden');
+                menu.classList.remove('flex');
+            }
+        }
+
+        // 作品集圖片與影片切換功能
+        function showPortfolioTab(tabId) {
+            document.getElementById('portfolio-images').classList.add('hidden');
+            document.getElementById('portfolio-videos').classList.add('hidden');
+            
+            const btnImages = document.getElementById('tab-images');
+            const btnVideos = document.getElementById('tab-videos');
+            
+            btnImages.className = "portfolio-tab bg-white/80 text-[var(--taupe)] border border-[var(--taupe)] px-8 py-2 rounded-full text-sm font-bold hover:bg-[var(--taupe)] hover:text-white transition-all shadow-sm";
+            btnVideos.className = "portfolio-tab bg-white/80 text-[var(--taupe)] border border-[var(--taupe)] px-8 py-2 rounded-full text-sm font-bold hover:bg-[var(--taupe)] hover:text-white transition-all shadow-sm";
+
+            document.getElementById(`portfolio-${tabId}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tab-${tabId}`);
+            activeBtn.className = "portfolio-tab bg-[var(--taupe)] text-white border border-[var(--taupe)] px-8 py-2 rounded-full text-sm font-bold transition-all shadow-sm";
         }
 
         function createPawDecorations() {
@@ -1096,38 +1235,43 @@
         const sliderStates = {};
         function moveSlider(id, direction) {
             const track = document.getElementById(`track-${id}`);
+            if(!track) return;
             const slides = track.querySelectorAll('.slider-slide');
             const total = slides.length;
             if (!sliderStates[id]) sliderStates[id] = 0;
             sliderStates[id] = (sliderStates[id] + direction + total) % total;
             track.style.transform = `translateX(-${sliderStates[id] * 100}%)`;
-
-            // 新增部分：同步切換對應的資訊與價格區塊
-            const infoTrack = document.getElementById(`info-${id}`);
-            if (infoTrack) {
-                infoTrack.style.transform = `translateX(-${sliderStates[id] * 100}%)`;
-            }
         }
 
-        // 新增：燈箱輪播所需變數與邏輯
         let currentLightboxImages = [];
         let currentLightboxIndex = 0;
 
-        function openLightbox(src) {
-            const imgs = document.querySelectorAll('.slider-slide');
-            const targetImg = Array.from(imgs).find(img => img.src === src);
-            
-            if (targetImg) {
-                // 如果是在輪播內的圖片，抓取同一組的所有圖片
-                const track = targetImg.closest('.slider-track');
-                currentLightboxImages = Array.from(track.querySelectorAll('img.slider-slide')).map(img => img.src);
+        function openLightbox(src, group = null) {
+            if (group === 'portfolio') {
+                // 專屬作品集展示的切換邏輯 (只抓取作品集內的圖片)
+                const container = document.getElementById('portfolio-images');
+                currentLightboxImages = Array.from(container.querySelectorAll('img')).map(img => img.src);
                 currentLightboxIndex = currentLightboxImages.indexOf(src);
             } else {
-                currentLightboxImages = [src];
-                currentLightboxIndex = 0;
+                // 其他委託項目輪播圖的切換邏輯
+                const imgs = document.querySelectorAll('.slider-slide');
+                const targetImg = Array.from(imgs).find(img => img.src === src);
+                
+                if (targetImg) {
+                    const container = targetImg.closest('.slider-track');
+                    if (container) {
+                        currentLightboxImages = Array.from(container.querySelectorAll('img')).map(img => img.src);
+                        currentLightboxIndex = currentLightboxImages.indexOf(src);
+                    } else {
+                        currentLightboxImages = [src];
+                        currentLightboxIndex = 0;
+                    }
+                } else {
+                    currentLightboxImages = [src];
+                    currentLightboxIndex = 0;
+                }
             }
             
-            // 開啟燈箱時不設動畫，直接顯示第一張
             const img = document.getElementById('lightbox-img');
             img.style.opacity = '1';
             updateLightboxImage();
@@ -1137,18 +1281,16 @@
         function updateLightboxImage() {
             const img = document.getElementById('lightbox-img');
             
-            // 如果燈箱已經在顯示中（即切換圖片），使用柔和動畫
             if (document.getElementById('lightbox').style.display === 'flex') {
-                img.style.opacity = '0'; // 先變透明
+                img.style.opacity = '0'; 
                 setTimeout(() => {
                     img.src = currentLightboxImages[currentLightboxIndex];
-                    img.onload = () => { img.style.opacity = '1'; }; // 載入完後淡入
-                }, 250); // 等待淡出動畫一半的時間
+                    img.onload = () => { img.style.opacity = '1'; }; 
+                }, 250); 
             } else {
                 img.src = currentLightboxImages[currentLightboxIndex];
             }
             
-            // 如果該組只有一張圖，自動隱藏左右切換按鈕
             const btns = document.querySelectorAll('.lightbox-btn');
             btns.forEach(btn => {
                 btn.style.display = currentLightboxImages.length > 1 ? 'flex' : 'none';
@@ -1166,7 +1308,6 @@
         }
 
         function closeLightbox(e) {
-            // 點擊背景或右上角關閉按鈕時隱藏燈箱
             if (e.target.id === 'lightbox' || e.target.closest('.lightbox-close')) {
                 document.getElementById('lightbox').style.display = 'none';
             }
@@ -1182,12 +1323,32 @@
 
         window.onload = () => {
             createPawDecorations();
-            showPage('home');
+            
+            // 優先讀取 sessionStorage 的紀錄，若無則讀取網址 hash，保持刷新不跳走
+            const hash = window.location.hash.replace('#', '');
+            const savedPage = sessionStorage.getItem('currentPage');
+            const targetPage = savedPage || hash;
+
+            if (targetPage && document.getElementById(targetPage) && document.getElementById(targetPage).classList.contains('page-view')) {
+                showPage(targetPage, false);
+            } else {
+                showPage('home', false);
+            }
         };
 
-        // 新增：禁止在圖片上點擊右鍵 (防止「另存圖片」)
+        // 監聽瀏覽器上一頁/下一頁事件，正確切換分頁
+        window.addEventListener('hashchange', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash && document.getElementById(hash) && document.getElementById(hash).classList.contains('page-view')) {
+                showPage(hash, false);
+            } else {
+                showPage('home', false);
+            }
+        });
+
+        // 禁止在圖片上點擊右鍵 (防止「另存圖片」)
         document.addEventListener('contextmenu', function(e) {
-            if (e.target.tagName === 'IMG') {
+            if (e.target.tagName === 'IMG' || e.target.tagName === 'VIDEO') {
                 e.preventDefault();
             }
         });
