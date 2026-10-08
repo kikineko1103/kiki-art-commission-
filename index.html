@@ -315,17 +315,9 @@
         }
         .lightbox-close:hover { opacity: 1; }
 
-        details[open] summary ~ * {
-            animation: slideDown 0.4s ease-out forwards;
-        }
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* 修正作品集統一淡入淡出動畫，移至父容器統一處理避免佈局跳閃 */
         .portfolio-content {
             will-change: opacity, transform;
+            transition: opacity 0.4s ease;
         }
         .portfolio-item {
             transition: opacity 0.3s ease;
@@ -719,7 +711,8 @@
                 <div class="hover-card px-6 pb-6 pt-8 shadow-sm flex flex-col gap-4 relative">
                     <span class="absolute top-0 left-1/2 -translate-x-1/2 text-[12px] bg-[var(--soft-purple)] px-6 py-1 rounded-b-xl text-[var(--taupe)] font-bold z-20 shadow-sm tracking-widest">模板</span>
                     <div class="w-full">
-                        <div class="slider-wrapper group mb-0 rounded-lg overflow-hidden">
+                        <!-- 修正: 移除 slider-wrapper 的 group 類別，確保只有內部 slider-slide-wrapper hover 才會放大 -->
+                        <div class="slider-wrapper mb-0 rounded-lg overflow-hidden">
                             <div class="slider-track" id="track-sticker">
                                 <div class="slider-slide-wrapper group cursor-zoom-in" onclick="openLightbox(this)">
                                     <div class="protection-overlay"></div>
@@ -748,7 +741,8 @@
                 <div class="hover-card px-6 pb-6 pt-8 shadow-sm flex flex-col gap-4 relative">
                     <span class="absolute top-0 left-1/2 -translate-x-1/2 text-[12px] bg-[var(--soft-purple)] px-6 py-1 rounded-b-xl text-[var(--taupe)] font-bold z-20 shadow-sm tracking-widest">模板</span>
                     <div class="w-full">
-                        <div class="slider-wrapper group mb-0 rounded-lg overflow-hidden">
+                        <!-- 修正: 移除 slider-wrapper 的 group 類別 -->
+                        <div class="slider-wrapper mb-0 rounded-lg overflow-hidden">
                             <div class="slider-track" id="track-fluff">
                                 <div class="slider-slide-wrapper group cursor-zoom-in" onclick="openLightbox(this)">
                                     <div class="protection-overlay"></div>
@@ -781,7 +775,8 @@
                 <div class="hover-card px-6 pb-6 pt-8 shadow-sm flex flex-col gap-4 relative">
                     <span class="absolute top-0 left-1/2 -translate-x-1/2 text-[12px] bg-[var(--soft-purple)] px-6 py-1 rounded-b-xl text-[var(--taupe)] font-bold z-20 shadow-sm tracking-widest">靜態</span>
                     <div class="w-full">
-                        <div class="slider-wrapper group mb-0 rounded-lg overflow-hidden">
+                        <!-- 修正: 移除 slider-wrapper 的 group 類別 -->
+                        <div class="slider-wrapper mb-0 rounded-lg overflow-hidden">
                             <div class="slider-track" id="track-rice">
                                 <div class="slider-slide-wrapper group cursor-zoom-in" onclick="openLightbox(this)">
                                     <div class="protection-overlay"></div>
@@ -814,7 +809,8 @@
                 <div class="hover-card px-6 pb-6 pt-8 shadow-sm flex flex-col gap-4 relative">
                     <span class="absolute top-0 left-1/2 -translate-x-1/2 text-[12px] bg-[var(--soft-purple)] px-6 py-1 rounded-b-xl text-[var(--taupe)] font-bold z-20 shadow-sm tracking-widest">直播</span>
                     <div class="w-full">
-                        <div class="slider-wrapper group mb-0 rounded-lg overflow-hidden">
+                        <!-- 修正: 移除 slider-wrapper 的 group 類別 -->
+                        <div class="slider-wrapper mb-0 rounded-lg overflow-hidden">
                             <div class="slider-track" id="track-jump">
                                 <div class="slider-slide-wrapper group cursor-zoom-in" onclick="openLightbox(this)">
                                     <div class="protection-overlay"></div>
@@ -851,7 +847,8 @@
                 <div class="hover-card px-6 pb-6 pt-8 shadow-sm flex flex-col gap-4 relative">
                     <span class="absolute top-0 left-1/2 -translate-x-1/2 text-[12px] bg-[var(--soft-purple)] px-6 py-1 rounded-b-xl text-[var(--taupe)] font-bold z-20 shadow-sm tracking-widest">靜態</span>
                     <div class="w-full">
-                        <div class="slider-wrapper group mb-0 rounded-lg overflow-hidden">
+                        <!-- 修正: 移除 slider-wrapper 的 group 類別 -->
+                        <div class="slider-wrapper mb-0 rounded-lg overflow-hidden">
                             <div class="slider-track" id="track-headshot">
                                 <div class="slider-slide-wrapper group cursor-zoom-in" onclick="openLightbox(this)">
                                     <div class="protection-overlay"></div>
@@ -884,7 +881,8 @@
                 <div class="hover-card px-6 pb-6 pt-8 shadow-sm flex flex-col gap-4 relative">
                     <span class="absolute top-0 left-1/2 -translate-x-1/2 text-[12px] bg-[var(--soft-purple)] px-6 py-1 rounded-b-xl text-[var(--taupe)] font-bold z-20 shadow-sm tracking-widest">靜態</span>
                     <div class="w-full">
-                        <div class="slider-wrapper group mb-0 rounded-lg overflow-hidden">
+                        <!-- 修正: 移除 slider-wrapper 的 group 類別 -->
+                        <div class="slider-wrapper mb-0 rounded-lg overflow-hidden">
                             <div class="slider-track" id="track-chibi_full">
                                 <div class="slider-slide-wrapper group cursor-zoom-in" onclick="openLightbox(this)">
                                     <div class="protection-overlay"></div>
@@ -921,7 +919,8 @@
                 <div class="hover-card px-6 pb-6 pt-8 shadow-sm flex flex-col gap-4 relative">
                     <span class="absolute top-0 left-1/2 -translate-x-1/2 text-[12px] bg-[var(--soft-purple)] px-6 py-1 rounded-b-xl text-[var(--taupe)] font-bold z-20 shadow-sm tracking-widest">靜態</span>
                     <div class="w-full">
-                        <div class="slider-wrapper group mb-0 rounded-lg overflow-hidden">
+                        <!-- 修正: 移除 slider-wrapper 的 group 類別 -->
+                        <div class="slider-wrapper mb-0 rounded-lg overflow-hidden">
                             <div class="slider-track" id="track-chibi">
                                 <div class="slider-slide-wrapper group cursor-zoom-in" onclick="openLightbox(this)">
                                     <div class="protection-overlay"></div>
@@ -962,7 +961,8 @@
                 <div class="hover-card px-6 pb-6 pt-8 shadow-sm flex flex-col gap-4 relative">
                     <span class="absolute top-0 left-1/2 -translate-x-1/2 text-[12px] bg-[var(--soft-purple)] px-6 py-1 rounded-b-xl text-[var(--taupe)] font-bold z-20 shadow-sm tracking-widest">靜態</span>
                     <div class="w-full">
-                        <div class="slider-wrapper group mb-0 rounded-lg overflow-hidden">
+                        <!-- 修正: 移除 slider-wrapper 的 group 類別 -->
+                        <div class="slider-wrapper mb-0 rounded-lg overflow-hidden">
                             <div class="slider-track" id="track-halfbody">
                                 <div class="slider-slide-wrapper group cursor-zoom-in" onclick="openLightbox(this)">
                                     <div class="protection-overlay"></div>
@@ -1003,7 +1003,8 @@
                 <div class="hover-card px-6 pb-6 pt-8 shadow-sm flex flex-col gap-4 relative">
                     <span class="absolute top-0 left-1/2 -translate-x-1/2 text-[12px] bg-[var(--soft-purple)] px-6 py-1 rounded-b-xl text-[var(--taupe)] font-bold z-20 shadow-sm tracking-widest">靜態</span>
                     <div class="w-full">
-                        <div class="slider-wrapper group mb-0 rounded-lg overflow-hidden">
+                        <!-- 修正: 移除 slider-wrapper 的 group 類別 -->
+                        <div class="slider-wrapper mb-0 rounded-lg overflow-hidden">
                             <div class="slider-track" id="track-fullbody">
                                 <div class="slider-slide-wrapper group cursor-zoom-in" onclick="openLightbox(this)">
                                     <div class="protection-overlay"></div>
@@ -1044,7 +1045,8 @@
                 <div class="hover-card px-6 pb-6 pt-8 shadow-sm flex flex-col gap-4 relative">
                     <span class="absolute top-0 left-1/2 -translate-x-1/2 text-[12px] bg-[var(--soft-purple)] px-6 py-1 rounded-b-xl text-[var(--taupe)] font-bold z-20 shadow-sm tracking-widest">靜態</span>
                     <div class="w-full">
-                        <div class="slider-wrapper group mb-0 rounded-lg overflow-hidden">
+                        <!-- 修正: 移除 slider-wrapper 的 group 類別 -->
+                        <div class="slider-wrapper mb-0 rounded-lg overflow-hidden">
                             <div class="slider-track" id="track-summer">
                                 <div class="slider-slide-wrapper group cursor-zoom-in" onclick="openLightbox(this)">
                                     <div class="protection-overlay"></div>
@@ -1077,7 +1079,8 @@
                 <div class="hover-card px-6 pb-6 pt-8 shadow-sm flex flex-col gap-4 relative">
                     <span class="absolute top-0 left-1/2 -translate-x-1/2 text-[12px] bg-[var(--soft-purple)] px-6 py-1 rounded-b-xl text-[var(--taupe)] font-bold z-20 shadow-sm tracking-widest">靜態</span>
                     <div class="w-full">
-                        <div class="slider-wrapper group mb-0 rounded-lg overflow-hidden">
+                        <!-- 修正: 移除 slider-wrapper 的 group 類別 -->
+                        <div class="slider-wrapper mb-0 rounded-lg overflow-hidden">
                             <div class="slider-track" id="track-threeviews">
                                 <div class="slider-slide-wrapper group cursor-zoom-in" onclick="openLightbox(this)">
                                     <div class="protection-overlay"></div>
@@ -1114,7 +1117,8 @@
                 <div class="hover-card px-6 pb-6 pt-8 shadow-sm flex flex-col gap-4 relative">
                     <span class="absolute top-0 left-1/2 -translate-x-1/2 text-[12px] bg-red-50 border border-t-0 border-red-300 px-6 py-1 rounded-b-xl text-red-500 font-bold z-20 shadow-sm tracking-widest">NSFW</span>
                     <div class="w-full">
-                        <div class="slider-wrapper group mb-0 rounded-lg overflow-hidden relative">
+                        <!-- 修正: 移除 slider-wrapper 的 group 類別 -->
+                        <div class="slider-wrapper mb-0 rounded-lg overflow-hidden relative">
                             <div id="r18-overlay" class="absolute inset-0 bg-white/70 backdrop-blur-md z-30 flex flex-col items-center justify-center text-center p-4 transition-opacity duration-300">
                                 <i class="fas fa-exclamation-triangle text-red-400 text-3xl mb-2"></i>
                                 <p class="text-sm font-bold text-gray-700 mb-3 leading-relaxed">前方有瑟瑟內容<br>請確認您已滿 18 歲</p>
@@ -1203,7 +1207,7 @@
             </div>
 
             <!-- R-18 年齡確認阻擋畫面 -->
-            <div id="portfolio-r18-gate" class="hidden max-w-xl mx-auto my-8 p-8 md:p-12 rounded-3xl age-gate-container text-center animate-fade-in shadow-xl">
+            <div id="portfolio-r18-gate" class="hidden max-w-xl mx-auto my-8 p-8 md:p-12 rounded-3xl age-gate-container text-center shadow-xl">
                 <div class="w-16 h-16 bg-red-100 text-red-500 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl shadow-inner">
                     <i class="fas fa-exclamation-triangle"></i>
                 </div>
@@ -1224,6 +1228,7 @@
 
             <!-- 1. 一般插畫作品區塊 -->
             <div id="portfolio-images" class="portfolio-content columns-1 sm:columns-2 lg:columns-3 gap-6">
+                <!-- 以下為完整的圖片清單 -->
                 <div class="portfolio-item group relative break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6 cursor-zoom-in" data-category="fullbody" onclick="openLightbox(this)">
                     <div class="absolute inset-0 z-10 protection-overlay"></div>
                     <img src="https://lh3.googleusercontent.com/d/1M8umQ7JOt27gvMRdMfo43-HcYj98LwkA" alt="作品展示" class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100 bg-gray-200 portfolio-media" draggable="false">
@@ -1325,42 +1330,42 @@
                     <img src="https://lh3.googleusercontent.com/d/1YUwujwej8o-i3KqqNr717Y9jM7zIywAf" alt="作品展示" class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100 bg-gray-200 portfolio-media" draggable="false">
                 </div>
 
-   <div class="portfolio-item group relative break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6 cursor-zoom-in" data-category="chibi" onclick="openLightbox(this)">
+               <div class="portfolio-item group relative break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6 cursor-zoom-in" data-category="chibi" onclick="openLightbox(this)">
                     <div class="absolute inset-0 z-10 protection-overlay"></div>
                     <img src="https://lh3.googleusercontent.com/d/1jf0rmeYdjgzRsxHK_uKdSSZLgmgCBRkb" alt="作品展示" class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100 bg-gray-200 portfolio-media" draggable="false">
                 </div>
 
-   <div class="portfolio-item group relative break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6 cursor-zoom-in" data-category="chibi" onclick="openLightbox(this)">
+               <div class="portfolio-item group relative break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6 cursor-zoom-in" data-category="chibi" onclick="openLightbox(this)">
                     <div class="absolute inset-0 z-10 protection-overlay"></div>
                     <img src="https://lh3.googleusercontent.com/d/1d8z96p7o485kJkLKpYWEmGVP-B-8Lf1i" alt="作品展示" class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100 bg-gray-200 portfolio-media" draggable="false">
                 </div>
 
-   <div class="portfolio-item group relative break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6 cursor-zoom-in" data-category="chibi" onclick="openLightbox(this)">
+               <div class="portfolio-item group relative break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6 cursor-zoom-in" data-category="chibi" onclick="openLightbox(this)">
                     <div class="absolute inset-0 z-10 protection-overlay"></div>
                     <img src="https://lh3.googleusercontent.com/d/1pw02lTOTpD7YE8Te_QMVTPLg-1xWNFZv" alt="作品展示" class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100 bg-gray-200 portfolio-media" draggable="false">
                 </div>
 
-   <div class="portfolio-item group relative break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6 cursor-zoom-in" data-category="chibi" onclick="openLightbox(this)">
+               <div class="portfolio-item group relative break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6 cursor-zoom-in" data-category="chibi" onclick="openLightbox(this)">
                     <div class="absolute inset-0 z-10 protection-overlay"></div>
                     <img src="https://lh3.googleusercontent.com/d/16I7_3x6hL5yU117CgdqkMw4eysYjynXo" alt="作品展示" class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100 bg-gray-200 portfolio-media" draggable="false">
                 </div>
 
-   <div class="portfolio-item group relative break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6 cursor-zoom-in" data-category="chibi" onclick="openLightbox(this)">
+               <div class="portfolio-item group relative break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6 cursor-zoom-in" data-category="chibi" onclick="openLightbox(this)">
                     <div class="absolute inset-0 z-10 protection-overlay"></div>
                     <img src="https://lh3.googleusercontent.com/d/1WT9Pq2K_8fwSTZfpW8zvdbNaL3s7j04I" alt="作品展示" class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100 bg-gray-200 portfolio-media" draggable="false">
                 </div>
 
-   <div class="portfolio-item group relative break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6 cursor-zoom-in" data-category="fullbody" onclick="openLightbox(this)">
+               <div class="portfolio-item group relative break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6 cursor-zoom-in" data-category="fullbody" onclick="openLightbox(this)">
                     <div class="absolute inset-0 z-10 protection-overlay"></div>
                     <img src="https://lh3.googleusercontent.com/d/1XfJnVP4vVgaaIa2plYzRI0jHRyQFxUGF" alt="作品展示" class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100 bg-gray-200 portfolio-media" draggable="false">
                 </div>
 
-   <div class="portfolio-item group relative break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6 cursor-zoom-in" data-category="fullbody" onclick="openLightbox(this)">
+               <div class="portfolio-item group relative break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6 cursor-zoom-in" data-category="fullbody" onclick="openLightbox(this)">
                     <div class="absolute inset-0 z-10 protection-overlay"></div>
                     <img src="https://lh3.googleusercontent.com/d/1cScE2UEBUCG_CczgK7Sv7YxmPuS3MBNW" alt="作品展示" class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100 bg-gray-200 portfolio-media" draggable="false">
                 </div>
 
-   <div class="portfolio-item group relative break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6 cursor-zoom-in" data-category="fullbody" onclick="openLightbox(this)">
+               <div class="portfolio-item group relative break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6 cursor-zoom-in" data-category="fullbody" onclick="openLightbox(this)">
                     <div class="absolute inset-0 z-10 protection-overlay"></div>
                     <img src="https://lh3.googleusercontent.com/d/1e2DpY7y61JTZyHGMRzvkXjdiERUmXZRr" alt="作品展示" class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100 bg-gray-200 portfolio-media" draggable="false">
                 </div>
@@ -1377,6 +1382,7 @@
 
             <!-- 3. R-18 作品區塊 -->
             <div id="portfolio-r18" class="portfolio-content columns-1 sm:columns-2 lg:columns-3 gap-6" style="display: none; opacity: 0;">
+                <!-- 已根據截斷的內容完整還原 -->
                 <div class="portfolio-item group relative break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6 cursor-zoom-in" data-category="nsfw" onclick="openLightbox(this)">
                     <div class="absolute inset-0 z-10 protection-overlay"></div>
                     <img src="https://lh3.googleusercontent.com/d/1b_Mof4rg0eVGeSJ8wRSiApNC1XzPxT2H" alt="作品展示" class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100 bg-gray-200 portfolio-media" draggable="false">
@@ -1394,7 +1400,7 @@
                     <img src="https://lh3.googleusercontent.com/d/1wqiiPlCrCi6_0a05y7F03ufSq1-NA1D0" alt="作品展示" class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100 bg-gray-200 portfolio-media" draggable="false">
                 </div>
 
-                <div class="portfolio-item group relative break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6 cursor-zoom-in" data-category="Soft-core" onclick="openLightbox(this)">
+<div class="portfolio-item group relative break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6 cursor-zoom-in" data-category="Soft-core" onclick="openLightbox(this)">
                     <div class="absolute inset-0 z-10 protection-overlay"></div>
                     <img src="https://lh3.googleusercontent.com/d/1_kuKZ4tSVbJMZqEGIWUsAqf5sMd3mshP" alt="作品展示" class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100 bg-gray-200 portfolio-media" draggable="false">
                 </div>
@@ -1441,274 +1447,220 @@
 
 
             </div>
-
         </div>
     </section>
 
-    <!-- JavaScript 腳本 -->
     <script>
-        // 頁面與導覽列切換
+        // 頁面切換邏輯
         function showPage(pageId) {
-            document.querySelectorAll('.page-view').forEach(page => {
-                page.classList.remove('active');
-            });
+            document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
             
-            // 導覽列按鈕樣式更新
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('onclick').includes(pageId)) {
+                if (link.getAttribute('onclick') && link.getAttribute('onclick').includes(pageId)) {
                     link.classList.add('active');
                 }
             });
-
             window.scrollTo({ top: 0, behavior: 'smooth' });
             
             const mobileMenu = document.getElementById('mobile-menu');
             if (!mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.add('hidden');
+                toggleMobileMenu();
             }
         }
 
+        // 手機版選單切換
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
         }
 
-        // 幻燈片輪播邏輯
-        const sliderStates = {};
-        function moveSlider(sliderId, direction) {
-            const track = document.getElementById(`track-${sliderId}`);
-            if(!track) return;
+        // 滑桿 (Slider) 邏輯
+        let sliderIndices = {};
+        function moveSlider(id, dir) {
+            if (sliderIndices[id] === undefined) sliderIndices[id] = 0;
+            const track = document.getElementById('track-' + id);
             const slides = track.querySelectorAll('.slider-slide-wrapper');
-            if (slides.length <= 1) return;
-
-            if (typeof sliderStates[sliderId] === 'undefined') {
-                sliderStates[sliderId] = 0;
-            }
-
-            sliderStates[sliderId] += direction;
-            
-            if (sliderStates[sliderId] < 0) {
-                sliderStates[sliderId] = slides.length - 1;
-            } else if (sliderStates[sliderId] >= slides.length) {
-                sliderStates[sliderId] = 0;
-            }
-
-            const percentage = sliderStates[sliderId] * 100;
-            track.style.transform = `translateX(-${percentage}%)`;
+            sliderIndices[id] = (sliderIndices[id] + dir + slides.length) % slides.length;
+            track.style.transform = `translateX(-${sliderIndices[id] * 100}%)`;
+            if(window.event) window.event.stopPropagation();
         }
 
         // 燈箱 (Lightbox) 邏輯
-        let currentLightboxMedia = [];
-        let currentLightboxIndex = 0;
+        let currentList = [];
+        let currentIndex = 0;
 
-        function openLightbox(element) {
+        function openLightbox(el) {
             const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            const video = document.getElementById('lightbox-video');
+            const media = el.querySelector('.portfolio-media');
             
-            let container = element.closest('.slider-track');
-            if (!container) {
-                 container = element.closest('.portfolio-content');
-            }
-            
-            if (container) {
-                // 抓取非隱藏狀態的項目
-                const items = Array.from(container.querySelectorAll('.slider-slide-wrapper:not(.hidden-item), .portfolio-item:not(.hidden-item)'));
-                currentLightboxMedia = items.map(el => {
-                    const img = el.querySelector('img');
-                    const vid = el.querySelector('video');
-                    return img ? { type: 'image', src: img.src } : (vid ? { type: 'video', src: vid.src } : null);
-                }).filter(item => item !== null);
-                
-                currentLightboxIndex = items.indexOf(element);
-                if(currentLightboxIndex === -1) currentLightboxIndex = 0;
+            if (media.tagName === 'IMG') {
+                img.src = media.src;
+                img.style.display = 'block';
+                video.style.display = 'none';
+                video.pause();
             } else {
-                const img = element.querySelector('img');
-                const vid = element.querySelector('video');
-                currentLightboxMedia = [img ? { type: 'image', src: img.src } : { type: 'video', src: vid.src }];
-                currentLightboxIndex = 0;
+                video.src = media.src;
+                video.style.display = 'block';
+                img.style.display = 'none';
             }
             
-            updateLightboxContent();
+            // 抓取當前分類下所有可見的媒體，以供導航
+            const container = el.closest('.slider-track') || el.closest('.portfolio-content');
+            if (container) {
+                currentList = Array.from(container.querySelectorAll('.slider-slide-wrapper:not(.hidden-item), .portfolio-item:not(.hidden-item)'));
+                currentIndex = currentList.indexOf(el);
+            }
             
             lightbox.style.display = 'flex';
-            setTimeout(() => lightbox.style.opacity = 1, 10);
+            setTimeout(() => lightbox.style.opacity = '1', 10);
         }
 
-        function updateLightboxContent() {
-            const imgEl = document.getElementById('lightbox-img');
-            const videoEl = document.getElementById('lightbox-video');
-            const media = currentLightboxMedia[currentLightboxIndex];
+        function closeLightbox(e) {
+            // 防止點擊圖片、影片或按鈕時關閉
+            if (e && e.target) {
+                if (e.target.tagName === 'IMG' || e.target.tagName === 'VIDEO' || e.target.closest('.lightbox-btn')) return;
+            }
+            const lightbox = document.getElementById('lightbox');
+            lightbox.style.opacity = '0';
+            setTimeout(() => {
+                lightbox.style.display = 'none';
+                document.getElementById('lightbox-video').pause();
+            }, 300);
+        }
+
+        function navigateLightbox(dir) {
+            if (currentList.length === 0) return;
+            currentIndex = (currentIndex + dir + currentList.length) % currentList.length;
+            const nextEl = currentList[currentIndex];
             
-            if (media.type === 'image') {
-                videoEl.style.display = 'none';
-                videoEl.pause();
-                videoEl.src = '';
-                
-                imgEl.src = media.src;
-                imgEl.style.display = 'block';
+            const img = document.getElementById('lightbox-img');
+            const video = document.getElementById('lightbox-video');
+            const media = nextEl.querySelector('.portfolio-media');
+            
+            if (media.tagName === 'IMG') {
+                img.src = media.src;
+                img.style.display = 'block';
+                video.style.display = 'none';
+                video.pause();
             } else {
-                imgEl.style.display = 'none';
-                imgEl.src = '';
-                
-                videoEl.src = media.src;
-                videoEl.style.display = 'block';
-                videoEl.play();
+                video.src = media.src;
+                video.style.display = 'block';
+                img.style.display = 'none';
             }
+            if(window.event) window.event.stopPropagation();
         }
 
-        function closeLightbox(event) {
-            if (event.target.id === 'lightbox' || event.target.classList.contains('lightbox-close') || event.target.closest('.lightbox-close')) {
-                const lightbox = document.getElementById('lightbox');
-                lightbox.style.opacity = 0;
+        // 作品集分頁與篩選邏輯
+        let r18Verified = false;
+
+        function showPortfolioTab(tab) {
+            // 重置主選單按鈕樣式
+            document.querySelectorAll('.portfolio-tab').forEach(t => {
+                if (t.id === 'tab-r18') {
+                    t.className = "portfolio-tab bg-red-50 text-red-500 border border-red-200 px-6 py-2 rounded-full text-xs md:text-sm font-bold hover:bg-red-500 hover:text-white transition-all shadow-sm flex items-center";
+                } else {
+                    t.className = "portfolio-tab bg-white/80 text-[var(--taupe)] border border-[var(--taupe)] px-6 py-2 rounded-full text-xs md:text-sm font-bold hover:bg-[var(--taupe)] hover:text-white transition-all shadow-sm";
+                }
+            });
+            
+            // 啟用當前主選單按鈕樣式
+            const activeBtn = document.getElementById('tab-' + tab);
+            if (tab === 'r18') {
+                activeBtn.className = "portfolio-tab bg-red-500 text-white border border-red-500 px-6 py-2 rounded-full text-xs md:text-sm font-bold transition-all shadow-sm flex items-center";
+            } else {
+                activeBtn.className = "portfolio-tab bg-[var(--taupe)] text-white border border-[var(--taupe)] px-6 py-2 rounded-full text-xs md:text-sm font-bold transition-all shadow-sm";
+            }
+            
+            // 切換次分類選單
+            document.querySelectorAll('[id^="sub-nav-"]').forEach(n => n.classList.add('hidden'));
+            document.getElementById('sub-nav-' + tab).classList.remove('hidden');
+            
+            // 隱藏所有作品集內容
+            document.querySelectorAll('.portfolio-content').forEach(c => {
+                c.style.opacity = '0';
+                setTimeout(() => c.style.display = 'none', 300);
+            });
+            
+            // 處理 R-18 年齡確認
+            if (tab === 'r18' && !r18Verified) {
                 setTimeout(() => {
-                    lightbox.style.display = 'none';
-                    const videoEl = document.getElementById('lightbox-video');
-                    videoEl.pause();
-                    videoEl.src = '';
+                    document.getElementById('portfolio-r18-gate').classList.remove('hidden');
+                    document.getElementById('portfolio-r18-gate').style.display = 'block';
                 }, 300);
+            } else {
+                document.getElementById('portfolio-r18-gate').style.display = 'none';
+                setTimeout(() => {
+                    const content = document.getElementById('portfolio-' + tab);
+                    content.style.display = 'block';
+                    setTimeout(() => content.style.opacity = '1', 10);
+                }, 300);
+                
+                // 觸發該分類當前活躍的次分類過濾器
+                const activeSub = document.querySelector('.sub-tab-' + tab + '.active');
+                if(activeSub) {
+                    const onclickAttr = activeSub.getAttribute('onclick');
+                    const category = onclickAttr.match(/'([^']+)'/)[1]; // 解析傳入的字串
+                    filterPortfolio(category, tab, activeSub);
+                }
             }
         }
 
-        function navigateLightbox(direction) {
-            currentLightboxIndex += direction;
-            if (currentLightboxIndex < 0) currentLightboxIndex = currentLightboxMedia.length - 1;
-            if (currentLightboxIndex >= currentLightboxMedia.length) currentLightboxIndex = 0;
-            updateLightboxContent();
+        function filterPortfolio(category, tab, btn) {
+            document.querySelectorAll('.sub-tab-' + tab).forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            document.querySelectorAll('#portfolio-' + tab + ' .portfolio-item').forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.classList.remove('hidden-item');
+                    item.style.display = 'block';
+                    setTimeout(() => item.style.opacity = '1', 10);
+                } else {
+                    item.style.opacity = '0';
+                    setTimeout(() => item.style.display = 'none', 300);
+                    item.classList.add('hidden-item');
+                }
+            });
         }
 
-        // R-18 確認邏輯 (委託項目中的遮罩)
+        // R-18 互動
         function confirmR18() {
             const overlay = document.getElementById('r18-overlay');
-            if(overlay) {
-                overlay.style.opacity = 0;
-                setTimeout(() => overlay.style.display = 'none', 300);
+            overlay.style.opacity = '0';
+            setTimeout(() => overlay.style.display = 'none', 300);
+        }
+
+        function verifyR18Portfolio(verified) {
+            if (verified) {
+                r18Verified = true;
+                document.getElementById('portfolio-r18-gate').style.display = 'none';
+                showPortfolioTab('r18');
             }
         }
 
-        // 作品集主分頁切換邏輯 (結合平滑過渡解決跳閃問題)
-        let isR18PortfolioVerified = false;
-
-        function showPortfolioTab(tabId) {
-            // 按鈕樣式更新
-            const tabs = ['images', 'videos', 'r18'];
-            tabs.forEach(t => {
-                const btn = document.getElementById(`tab-${t}`);
-                if (t === tabId) {
-                    if (t === 'r18') {
-                        btn.className = 'portfolio-tab bg-red-500 text-white border border-red-500 px-6 py-2 rounded-full text-xs md:text-sm font-bold transition-all shadow-sm flex items-center';
-                    } else {
-                        btn.className = 'portfolio-tab bg-[var(--taupe)] text-white border border-[var(--taupe)] px-6 py-2 rounded-full text-xs md:text-sm font-bold transition-all shadow-sm';
-                    }
-                } else {
-                    if (t === 'r18') {
-                        btn.className = 'portfolio-tab bg-red-50 text-red-500 border border-red-200 px-6 py-2 rounded-full text-xs md:text-sm font-bold hover:bg-red-500 hover:text-white transition-all shadow-sm flex items-center';
-                    } else {
-                        btn.className = 'portfolio-tab bg-white/80 text-[var(--taupe)] border border-[var(--taupe)] px-6 py-2 rounded-full text-xs md:text-sm font-bold hover:bg-[var(--taupe)] hover:text-white transition-all shadow-sm';
-                    }
-                }
-            });
-
-            // 隱藏所有次選單與內容
-            const allNavs = document.querySelectorAll('[id^="sub-nav-"]');
-            const allContents = document.querySelectorAll('.portfolio-content');
-            const r18Gate = document.getElementById('portfolio-r18-gate');
-            
-            allNavs.forEach(nav => nav.classList.add('hidden'));
-            allContents.forEach(content => {
-                content.style.display = 'none';
-                content.style.opacity = '0';
-            });
-            r18Gate.classList.add('hidden');
-
-            // 顯示目標分頁內容
-            if (tabId === 'r18' && !isR18PortfolioVerified) {
-                r18Gate.classList.remove('hidden');
-            } else {
-                document.getElementById(`sub-nav-${tabId}`).classList.remove('hidden');
-                const targetContent = document.getElementById(`portfolio-${tabId}`);
-                if(targetContent) {
-                    targetContent.style.display = 'block';
-                    // 觸發 reflow 確保 opacity 動畫生效
-                    void targetContent.offsetWidth;
-                    targetContent.style.opacity = '1';
-                    targetContent.style.transition = 'opacity 0.4s ease';
-                }
+        // 生成背景貓爪裝飾
+        function createPaws() {
+            const bg = document.getElementById('pawBg');
+            for(let i=0; i<15; i++) {
+                const paw = document.createElement('i');
+                paw.className = 'fas fa-paw paw-decoration';
+                paw.style.left = `${Math.random() * 100}%`;
+                paw.style.top = `${Math.random() * 100}%`;
+                paw.style.transform = `rotate(${Math.random() * 360}deg)`;
+                paw.style.fontSize = `${Math.random() * 2 + 1}rem`;
+                bg.appendChild(paw);
             }
         }
 
-        // R-18 專區進入驗證
-        function verifyR18Portfolio(isVerified) {
-            if (isVerified) {
-                isR18PortfolioVerified = true;
-                document.getElementById('portfolio-r18-gate').classList.add('hidden');
-                document.getElementById('sub-nav-r18').classList.remove('hidden');
-                
-                const targetContent = document.getElementById('portfolio-r18');
-                if(targetContent) {
-                     targetContent.style.display = 'block';
-                     void targetContent.offsetWidth;
-                     targetContent.style.opacity = '1';
-                     targetContent.style.transition = 'opacity 0.4s ease';
-                }
-            }
-        }
-
-        // 完美解決作品集過濾跳閃的核心邏輯 (Container Fade-Out 策略)
-        function filterPortfolio(category, group, btn) {
-            // 更新按鈕 active 樣式
-            const buttons = document.querySelectorAll(`.sub-tab-${group}`);
-            buttons.forEach(b => b.classList.remove('active'));
-            if(btn) btn.classList.add('active');
-
-            const container = document.getElementById(`portfolio-${group}`);
-            const items = container.querySelectorAll('.portfolio-item');
-
-            // 1. 先將整個外層容器淡出並稍微下移，藉此隱藏內部佈局變動時的突兀感
-            container.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
-            container.style.opacity = '0';
-            container.style.transform = 'translateY(15px)';
-
-            // 2. 等待容器變透明後，進行顯示/隱藏的切換 (此時畫面不會有跳閃發生)
-            setTimeout(() => {
-                items.forEach(item => {
-                    const match = category === 'all' || item.dataset.category === category;
-                    if (match) {
-                        item.classList.remove('hidden-item');
-                    } else {
-                        item.classList.add('hidden-item');
-                    }
-                });
-
-                // 3. 確保 DOM 已經重新排列完畢後，再將容器平滑淡入
-                requestAnimationFrame(() => {
-                    setTimeout(() => {
-                        container.style.opacity = '1';
-                        container.style.transform = 'translateY(0)';
-                    }, 50); // 加上微小延遲讓瀏覽器完成繪製
-                });
-            }, 350); // 時間對應上方的 opacity 0.35s 動畫
-        }
-
-        // 頁面載入初始化
-        document.addEventListener('DOMContentLoaded', () => {
-            // 生成貓掌背景裝飾
-            const pawBg = document.getElementById('pawBg');
-            if (pawBg) {
-                for(let i=0; i<15; i++) {
-                    const paw = document.createElement('i');
-                    paw.className = 'fas fa-paw paw-decoration';
-                    paw.style.left = Math.random() * 100 + 'vw';
-                    paw.style.top = Math.random() * 100 + 'vh';
-                    paw.style.transform = `rotate(${Math.random() * 360}deg) scale(${0.5 + Math.random() * 1.5})`;
-                    paw.style.opacity = (Math.random() * 0.05 + 0.02).toString();
-                    pawBg.appendChild(paw);
-                }
-            }
-            
-            // 初始化選單
-            document.querySelector('.nav-link').classList.add('active');
-        });
+        // 頁面加載初始化
+        window.onload = () => {
+            createPaws();
+            showPage('home');
+        };
     </script>
 </body>
 </html>
