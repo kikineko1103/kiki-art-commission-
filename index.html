@@ -1453,31 +1453,48 @@
     <!-- JavaScript 腳本 -->
     <script>
         // 頁面與導覽列切換
-        function showPage(pageId) {
-            document.querySelectorAll('.page-view').forEach(page => {
-                page.classList.remove('active');
-            });
-            document.getElementById(pageId).classList.add('active');
+               function showPage(pageId, pushToHistory = true) {
+            const pages = document.querySelectorAll('.page-view');
+            pages.forEach(page => page.classList.remove('active'));
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) targetPage.classList.add('active');
             
-            // 導覽列按鈕樣式更新
-            document.querySelectorAll('.nav-link').forEach(link => {
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('onclick').includes(pageId)) {
+                if (link.getAttribute('onclick') && link.getAttribute('onclick').includes(pageId)) {
                     link.classList.add('active');
                 }
             });
 
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            
-            const mobileMenu = document.getElementById('mobile-menu');
-            if (!mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.add('hidden');
+            if (pushToHistory) {
+                if(history.pushState) {
+                    history.pushState(null, null, '#' + pageId);
+                } else {
+                    window.location.hash = pageId;
+                }
             }
+
+            sessionStorage.setItem('currentPage', pageId);
+
+            const menu = document.getElementById('mobile-menu');
+            if (menu && !menu.classList.contains('hidden')) {
+                menu.classList.add('hidden');
+                menu.classList.remove('flex');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
+            if(menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                menu.classList.add('flex');
+            } else {
+                menu.classList.add('hidden');
+                menu.classList.remove('flex');
+            }
         }
 
         // 幻燈片輪播邏輯
