@@ -47,6 +47,7 @@
         /* 防護遮罩：覆蓋在媒體上阻擋所有原生右鍵或長按行為 */
         .protection-overlay {
             position: absolute;
+            pointer-events: none;
             top: 0;
             left: 0;
             width: 100%;
@@ -1375,7 +1376,7 @@
             <div id="portfolio-videos" class="portfolio-content columns-1 sm:columns-2 lg:columns-3 gap-6" style="display: none; opacity: 0;">
                 <div class="portfolio-item group relative break-inside-avoid rounded-2xl overflow-hidden shadow-sm hover-card border-4 border-white bg-white mb-6 cursor-pointer" data-category="live2d" onclick="openLightbox(this)">
                     <div class="absolute inset-0 z-10 protection-overlay"></div>
-                    <video src="https://cdn.discordapp.com/attachments/1557051616811548695/1557055697802367048/2026-07-31_17-59-43_1.mp4?backend=b2&ex=6ac9b45f&is=6ac862df&hm=1a925769c415a896c41f1a3c211177b7c9d38df51b28ad7fd80bb9969dc544d2&" class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100 bg-gray-200 portfolio-media" autoplay muted loop playsinline controlsList="nodownload"></video>
+                    <video src="https://github.com/kikineko1103/kiki-art-commission-/raw/refs/heads/main/L2D.mp4" class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100 bg-gray-200 portfolio-media" autoplay muted loop playsinline controlsList="nodownload"></video>
                     <div class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none text-white text-4xl opacity-80"><i class="fas fa-play-circle"></i></div>
                 </div>
             </div>
@@ -1514,8 +1515,27 @@
             </div>
         </div>
 </section>
+
+    <!-- 頁尾 -->
+    <footer class="text-center py-12 text-xs text-[var(--taupe)] opacity-60 tracking-widest border-t border-[var(--taupe)]/10">
+        © 2026 ききねこ / KIKI NEKO. All Rights Reserved.
+    </footer>
+
+
     <!-- JavaScript 腳本 -->
     <script>
+
+// Paw Background Generator
+        const pawBg = document.getElementById('pawBg');
+        for (let i = 0; i < 15; i++) {
+            const paw = document.createElement('i');
+            paw.className = 'fas fa-paw paw-decoration';
+            paw.style.top = Math.random() * 100 + '%';
+            paw.style.left = Math.random() * 100 + '%';
+            paw.style.transform = `rotate(${Math.random() * 360}deg)`;
+            pawBg.appendChild(paw);
+        }
+
         // 頁面與導覽列切換
                function showPage(pageId, pushToHistory = true) {
             const pages = document.querySelectorAll('.page-view');
